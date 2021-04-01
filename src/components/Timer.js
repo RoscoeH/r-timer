@@ -1,22 +1,12 @@
 import React from "react";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
-import { range } from "../core/utils";
+import { range, snapValue, toRadians } from "../core/utils";
 
 function renderArc(radius, radians, x, y) {
   return `m${radius} ${radius} v${-radius} A${radius} ${radius} 0 ${
     radians > Math.PI / 2 && radians < (3 * Math.PI) / 2 ? 1 : 0
   } 1 ${x} ${y}`;
-}
-
-function calculateRadians(x, y) {
-  return x !== null && y !== null
-    ? Math.atan2(y, x) + (x < 0 && y < 0 ? 2 * Math.PI : 0)
-    : -Math.PI / 2;
-}
-
-function snapValue(value, resolution) {
-  return Math.round(value / resolution) * resolution;
 }
 
 const Mark = ({ size, angle, big = false }) => {
@@ -49,15 +39,11 @@ const Marks = ({ size }) => {
 
 export default function Timer({
   size = DEFAULT_TIMER_SIZE,
-  x,
-  y,
+  angle,
   snap = true,
 }) {
   const radius = size / 2;
-  const cursorX = x ? -radius + x : null;
-  const cursorY = y ? -radius + y : null;
-
-  let radians = calculateRadians(cursorX, cursorY);
+  let radians = -Math.PI / 2 + toRadians(angle);
   radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
 
   const handX = radius + radius * Math.cos(radians);

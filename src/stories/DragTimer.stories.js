@@ -19,4 +19,7 @@ export default {
 const Template = (args) => <DragTimer {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = { snap: true };
+
+export const NoSnap = Template.bind({});
+NoSnap.args = { snap: false };

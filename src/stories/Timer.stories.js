@@ -6,18 +6,11 @@ export default {
   title: "Components/Timer",
   component: Timer,
   argTypes: {
-    x: {
+    angle: {
       control: {
         type: "range",
         min: 0,
-        max: 256,
-      },
-    },
-    y: {
-      control: {
-        type: "range",
-        min: 0,
-        max: 256,
+        max: 360,
       },
     },
     snap: {
@@ -34,16 +27,16 @@ export const Default = Template.bind({});
 Default.args = {};
 
 export const FirstQuad = Template.bind({});
-FirstQuad.args = { x: 200, y: 30 };
+FirstQuad.args = { angle: 30 };
 
 export const SecondQuad = Template.bind({});
-SecondQuad.args = { x: 200, y: 200 };
+SecondQuad.args = { angle: 155 };
 
 export const ThirdQuad = Template.bind({});
-ThirdQuad.args = { x: 30, y: 200 };
+ThirdQuad.args = { angle: 222 };
 
 export const FourthQuad = Template.bind({});
-FourthQuad.args = { x: 30, y: 30 };
+FourthQuad.args = { angle: 333 };
 
 export const NoSnap = Template.bind({});
-NoSnap.args = { x: 200, y: 30, snap: false };
+NoSnap.args = { angle: 32, snap: false };
