@@ -31,7 +31,7 @@ const Marks = ({ size }) => {
   return (
     <g>
       {range(NUM_MARKS).map((i) => (
-        <Mark size={size} angle={i * (360 / 60)} big={i % 5 === 0} />
+        <Mark key={i} size={size} angle={i * (360 / 60)} big={i % 5 === 0} />
       ))}
     </g>
   );
@@ -41,9 +41,13 @@ export default function Timer({
   size = DEFAULT_TIMER_SIZE,
   angle,
   snap = true,
+  color = "#21fa90",
 }) {
   const radius = size / 2;
-  let radians = -Math.PI / 2 + toRadians(angle);
+  const laps = Math.floor(angle / 360);
+  const remainingAngle = angle % 360;
+
+  let radians = -Math.PI / 2 + toRadians(remainingAngle);
   radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
 
   const handX = radius + radius * Math.cos(radians);
@@ -53,10 +57,19 @@ export default function Timer({
     <svg width={size} height={size}>
       <circle cx={radius} cy={radius} r={size / 2} opacity="0.05" />
       <Marks size={size} />
+      {range(laps).map((i) => (
+        <circle
+          cx={radius}
+          cy={radius}
+          r={size / 2}
+          fill={color}
+          opacity="0.33"
+        />
+      ))}
       <path
         d={renderArc(radius, radians, handX, handY)}
-        fill="red"
-        opacity="0.5"
+        fill={color}
+        opacity="0.33"
       />
       <circle cx={radius} cy={radius} r={size / 128} opacity="0.5" />
     </svg>

@@ -10,7 +10,7 @@ export default {
       control: {
         type: "range",
         min: 0,
-        max: 360,
+        max: 360 * 3,
       },
     },
     snap: {
@@ -37,6 +37,9 @@ ThirdQuad.args = { angle: 222 };
 
 export const FourthQuad = Template.bind({});
 FourthQuad.args = { angle: 333 };
+
+export const SecondLap = Template.bind({});
+SecondLap.args = { angle: 444 };
 
 export const NoSnap = Template.bind({});
 NoSnap.args = { angle: 32, snap: false };
