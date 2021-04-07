@@ -37,18 +37,21 @@ const Marks = ({ size }) => {
   );
 };
 
+const DEFAULT_OPACITY = 1 / 3;
+
 export default function Timer({
   size = DEFAULT_TIMER_SIZE,
-  angle,
+  angle = 0,
   snap = true,
   color = "#21fa90",
 }) {
   const radius = size / 2;
-  const laps = Math.floor(angle / 360);
-  const remainingAngle = angle % 360;
+  const snappedAngled = snap ? snapValue(angle, 360 / 120) : angle;
+  const remainingAngle = snappedAngled % 360;
+  const laps = Math.floor(snappedAngled / 360);
 
   let radians = -Math.PI / 2 + toRadians(remainingAngle);
-  radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
+  // radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
 
   const handX = radius + radius * Math.cos(radians);
   const handY = radius + radius * Math.sin(radians);
@@ -56,21 +59,22 @@ export default function Timer({
   return (
     <svg width={size} height={size}>
       <circle cx={radius} cy={radius} r={size / 2} opacity="0.05" />
-      <Marks size={size} />
       {range(laps).map((i) => (
         <circle
+          key={i}
           cx={radius}
           cy={radius}
           r={size / 2}
           fill={color}
-          opacity="0.33"
+          opacity={DEFAULT_OPACITY}
         />
       ))}
       <path
         d={renderArc(radius, radians, handX, handY)}
         fill={color}
-        opacity="0.33"
+        opacity={DEFAULT_OPACITY}
       />
+      <Marks size={size} />
       <circle cx={radius} cy={radius} r={size / 128} opacity="0.5" />
     </svg>
   );
