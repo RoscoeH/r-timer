@@ -26,7 +26,13 @@ const CONTENT = {
 
 const DEFAULT_ICON_SIZE = 24;
 
-export default function MyButton({ type = "primary", icon, color, children }) {
+export default function MyButton({
+  type = "primary",
+  icon,
+  color,
+  children,
+  ...props
+}) {
   const renderContent = CONTENT[type] || renderTextButton;
   const Component = type === TYPES.icon ? IconButton : ThemeUiButton;
   const colorProps = color
@@ -39,7 +45,7 @@ export default function MyButton({ type = "primary", icon, color, children }) {
       }
     : {};
   return (
-    <Component variant={type} {...colorProps}>
+    <Component variant={type} {...colorProps} {...props}>
       {renderContent({ type, icon, color, children })}
     </Component>
   );
