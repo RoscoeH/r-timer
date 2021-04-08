@@ -8,7 +8,7 @@ const baseAccents = [
   { color: "blue", rgb: [33, 250, 224] },
   { color: "darkBlue", rgb: [33, 159, 250] },
   { color: "purple", rgb: [128, 33, 250] },
-  { color: "pink", rgb: [233, 250, 33] },
+  { color: "pink", rgb: [250, 33, 228] },
   { color: "black", rgb: [0, 0, 0] },
 ];
 
