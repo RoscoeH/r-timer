@@ -11,6 +11,7 @@
     "react-dnd-touch-backend": "^14.0.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "theme-ui": "^0.6.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -29,10 +30,11 @@
     "overrides": [
       {
         "files": [
-          "**/*.stories.*"
+          "**/*.js?(x)"
         ],
         "rules": {
-          "import/no-anonymous-default-export": "off"
+          "import/no-anonymous-default-export": 0,
+          "react/jsx-pascal-case": 0
         }
       }
     ]
