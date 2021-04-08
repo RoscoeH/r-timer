@@ -1,4 +1,6 @@
-import React from "react";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import { range, snapValue, toRadians } from "../core/utils";
@@ -57,7 +59,6 @@ export default function Timer({
 
   return (
     <svg width={size} height={size}>
-      <circle cx={radius} cy={radius} r={size / 2} opacity="0.05" />
       {range(laps).map((i) => (
         <circle
           key={i}
@@ -74,7 +75,15 @@ export default function Timer({
         opacity={DEFAULT_OPACITY}
       />
       <Marks size={size} />
-      <circle cx={radius} cy={radius} r={size / 128} opacity="0.5" />
+      <circle cx={radius} cy={radius} r={size / 128} />
+      <line
+        x1={radius}
+        y1={radius}
+        x2={radius}
+        y2="0"
+        transform={`rotate(${remainingAngle} ${radius} ${radius})`}
+        sx={{ stroke: "dark" }}
+      />
     </svg>
   );
 }
