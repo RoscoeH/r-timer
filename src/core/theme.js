@@ -142,4 +142,21 @@ export default {
       },
     },
   },
+  forms: {
+    input: {
+      outline: "none",
+      textAlign: "center",
+      height: 4,
+      border: "none",
+      borderBottom: "default",
+      borderRadius: 0,
+      borderColor: "accent.green",
+      "&:hover": {
+        borderColor: "accent.hover.green",
+      },
+      "&:focus": {
+        borderColor: "dark",
+      },
+    },
+  },
 };
