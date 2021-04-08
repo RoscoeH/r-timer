@@ -51,7 +51,6 @@ export default function Timer({
   const laps = Math.floor(snappedAngled / 360);
 
   let radians = -Math.PI / 2 + toRadians(remainingAngle);
-  // radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
 
   const handX = radius + radius * Math.cos(radians);
   const handY = radius + radius * Math.sin(radians);
