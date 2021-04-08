@@ -28,7 +28,7 @@ const ICONS = {
   chevronDown,
 };
 
-export default function Icon({ icon = "menu", size = 24, inline }) {
+export default function Icon({ icon = "menu", size = 24, inline, ...props }) {
   const Component = inline ? InlineIcon : IconComponent;
-  return <Component icon={ICONS[icon]} width={size} height={size} />;
+  return <Component icon={ICONS[icon]} width={size} height={size} {...props} />;
 }

@@ -71,6 +71,7 @@ export default {
   styles: {
     root: {
       fontFamily: "body",
+      fontWeight: 300,
     },
     h1: {
       fontSize: 3,
