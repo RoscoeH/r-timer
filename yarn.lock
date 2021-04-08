@@ -10042,6 +10042,11 @@ objectorarray@^1.0.4:
   resolved "https://registry.yarnpkg.com/objectorarray/-/objectorarray-1.0.4.tgz#d69b2f0ff7dc2701903d308bb85882f4ddb49483"
   integrity sha512-91k8bjcldstRz1bG6zJo8lWD7c6QXcB4nTDUqiEvIL1xAsLoZlOOZZG+nd6YPz+V7zY1580J4Xxh1vZtyv4i/w==
 
+observable-lite@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/observable-lite/-/observable-lite-1.0.2.tgz#dadd15ae5f32d658758cc1e3be5b2d3bd15ab0cd"
+  integrity sha1-2t0Vrl8y1lh1jMHjvlstO9FasM0=
+
 obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
