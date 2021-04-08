@@ -15,7 +15,6 @@ const unsubscribe = ({ path, callback }) => timer.unsubscribe(path, callback);
 const setValue = (path) => (value) => timer.set(path, value);
 
 export default function useTimer(...subscriptions) {
-  console.log("raw subs", subscriptions);
   const subs = useMemo(
     () => (Array.isArray(subscriptions) ? subscriptions : [subscriptions]),
     [subscriptions]
@@ -25,8 +24,6 @@ export default function useTimer(...subscriptions) {
     (key) => (value) => setState({ ...state, [key]: value }),
     [state]
   );
-
-  console.log("subs", subs);
 
   useEffect(() => {
     const subscriptionMap = subs.map((path) => ({
@@ -39,15 +36,15 @@ export default function useTimer(...subscriptions) {
 
   const actions = useMemo(
     () =>
-      subs.reduce((prev, path) => {
-        console.log(prev, path);
-        return {
+      subs.reduce(
+        (prev, path) => ({
           ...prev,
           [`set${path.charAt(0).toUpperCase()}${path.substring(1)}`]: setValue(
             path
           ),
-        };
-      }, {}),
+        }),
+        {}
+      ),
     [subs]
   );
 
