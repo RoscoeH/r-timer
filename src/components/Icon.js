@@ -28,6 +28,6 @@ const ICONS = {
   chevronDown,
 };
 
-export default function Icon({ icon = "menu" }) {
-  return <IconComponent icon={ICONS[icon]} />;
+export default function Icon({ icon = "menu", size = 24 }) {
+  return <IconComponent icon={ICONS[icon]} width={size} height={size} />;
 }

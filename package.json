@@ -13,8 +13,11 @@
     "react-dnd-touch-backend": "^14.0.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "theme-ui": "^0.6.2",
+    "theme-ui": "0.3.5",
     "web-vitals": "^1.0.1"
+  },
+  "resolutions": {
+    "babel-loader": "8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
