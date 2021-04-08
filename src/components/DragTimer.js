@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import { snapValue, toAngle } from "../core/utils";
+import useTimer from "../hooks/useTimer";
 import Timer from "./Timer";
 
 const DRAG_TYPE = "TIMER";
@@ -16,9 +17,20 @@ function calculateRadians(x, y) {
 const MAX_LAPS = 2;
 const MAX_ANGLE = 360 * (MAX_LAPS + 1);
 
+const secondsToAngle = (seconds) => (seconds / 3600) * 360;
+const angleToSeconds = (angle) => Math.round((angle / 360) * 3600);
+
 export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
+  const [{ seconds }, { setSeconds }] = useTimer("seconds");
   const [previousQuadrant, setPreviousQuadrant] = useState(null);
   const [laps, setLaps] = useState(0);
+  const [angle, setAngle] = useState();
+
+  useEffect(() => {
+    if (seconds) {
+      setAngle(secondsToAngle(seconds));
+    }
+  }, [seconds]);
 
   const [{ initialSourceClientOffset, clientOffset }, drag] = useDrag(() => ({
     type: DRAG_TYPE,
@@ -35,29 +47,34 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
 
   // Calculate angle
   const radius = size / 2;
-  const x =
-    initialSourceClientOffset && clientOffset
-      ? -radius + clientOffset.x - initialSourceClientOffset.x
-      : null;
-  const y =
-    initialSourceClientOffset && clientOffset
-      ? -radius + clientOffset.y - initialSourceClientOffset.y
-      : null;
-  let radians = Math.PI / 2 + calculateRadians(x, y);
-  radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
-  let angle = toAngle(radians);
 
-  const currentQuadrant = Math.floor(angle / 90);
+  let currentAngle;
+  if (initialSourceClientOffset && clientOffset) {
+    const x = -radius + clientOffset.x - initialSourceClientOffset.x;
+    const y = -radius + clientOffset.y - initialSourceClientOffset.y;
 
-  // Zero angle unless starting in quarant 0 or 1
-  angle = currentQuadrant < 2 || previousQuadrant >= 1 ? angle : 0;
+    let radians = Math.PI / 2 + calculateRadians(x, y);
+    radians = snap ? snapValue(radians, (2 * Math.PI) / 120) : radians;
+    currentAngle = toAngle(radians);
+  }
+
+  const currentQuadrant = Math.floor(currentAngle / 90);
+
+  // // Zero angle unless starting in quarant 0 or 1
+  // currentAngle =
+  //   currentQuadrant < 2 || previousQuadrant >= 1 ? currentAngle : 0;
+
+  console.log("currentAngle", currentAngle);
 
   // Save previous quadrant
   useEffect(() => {
-    if (angle > 0 && Math.abs(currentQuadrant - previousQuadrant) === 1) {
+    if (
+      currentAngle > 0 &&
+      Math.abs(currentQuadrant - previousQuadrant) === 1
+    ) {
       setPreviousQuadrant(currentQuadrant);
     }
-  }, [currentQuadrant, angle, previousQuadrant]);
+  }, [currentQuadrant, currentAngle, previousQuadrant]);
 
   // Increment or decrement laps
   useEffect(() => {
@@ -75,8 +92,15 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
   }, [currentQuadrant, previousQuadrant, laps]);
 
   // Recalculate angle using laps
-  angle = Math.min(laps * 360 + angle, MAX_ANGLE);
-  angle = Math.max(angle, 0);
+  currentAngle = Math.min(laps * 360 + currentAngle, MAX_ANGLE);
+  currentAngle = Math.max(currentAngle, 0);
+
+  useEffect(() => {
+    if (currentAngle) {
+      const newSeconds = angleToSeconds(currentAngle);
+      setSeconds(newSeconds);
+    }
+  }, [laps, currentAngle, setSeconds]);
 
   return (
     <div ref={drag}>
