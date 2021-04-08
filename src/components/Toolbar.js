@@ -2,10 +2,10 @@
 /** @jsx jsx */
 import { jsx, Input } from "theme-ui";
 
-import useTimerHook from "../hooks/useTimer";
+import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
-export default function Toolbar({ useTimer = useTimerHook }) {
+export default function Toolbar() {
   const [{ name, color }, { setName }] = useTimer("name", "color");
   const onNameChange = (e) => setName(e.target.value);
 

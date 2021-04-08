@@ -29,3 +29,10 @@ export function toTime(seconds) {
 
   return values.map((n) => n.toString().padStart(2, "0")).join(":");
 }
+
+export function toFinishTime(seconds) {
+  var date = new Date();
+  date.setSeconds(date.getSeconds() + seconds);
+  const time = date.toTimeString().split(" ")[0];
+  return time.substring(0, 5);
+}

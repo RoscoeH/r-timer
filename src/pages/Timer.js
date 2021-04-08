@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 
 import Toolbar from "../components/Toolbar";
-import TimeDisplay from "../components/TimeDisplay";
+import Times from "../components/Times";
 import DragTimer from "../components/DragTimer";
 import Button from "../components/Button";
 
@@ -11,10 +11,7 @@ export default function TimerPage() {
   return (
     <div>
       <Toolbar />
-      <div sx={{ display: "flex", justifyContent: "center" }}>
-        <TimeDisplay>37:23</TimeDisplay>
-        <TimeDisplay icon="flag">16:08</TimeDisplay>
-      </div>
+      <Times />
       <div sx={{ textAlign: "center" }}>
         <DragTimer />
       </div>
