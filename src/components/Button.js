@@ -7,13 +7,7 @@ const TYPES = {
   icon: "icon",
 };
 
-const DEFAULT_ICON_SIZE = 24;
-
-function renderIconButton(icon) {
-  return <Icon icon={icon} size={DEFAULT_ICON_SIZE} />;
-}
-
-function renderTextButton(children, icon) {
+function renderTextButton({ children, icon }) {
   return icon ? (
     <span>
       <span sx={{ verticalAlign: "middle", mr: 2 }}>
@@ -26,12 +20,27 @@ function renderTextButton(children, icon) {
   );
 }
 
-export default function MyButton({ type = "primary", icon, children }) {
-  const content =
-    type === TYPES.icon
-      ? renderIconButton(icon)
-      : renderTextButton(children, icon);
-  const Component = type === TYPES.icon ? IconButton : ThemeUiButton;
+const CONTENT = {
+  icon: ({ icon }) => <Icon icon={icon} size={DEFAULT_ICON_SIZE} />,
+};
 
-  return <Component variant={type}>{content}</Component>;
+const DEFAULT_ICON_SIZE = 24;
+
+export default function MyButton({ type = "primary", icon, color, children }) {
+  const renderContent = CONTENT[type] || renderTextButton;
+  const Component = type === TYPES.icon ? IconButton : ThemeUiButton;
+  const colorProps = color
+    ? {
+        bg: `accent.${color}`,
+        sx: {
+          "&:hover": { borderColor: `accent.hover.${color}` },
+          "&:active": { borderColor: "dark" },
+        },
+      }
+    : {};
+  return (
+    <Component variant={type} {...colorProps}>
+      {renderContent({ type, icon, color, children })}
+    </Component>
+  );
 }
