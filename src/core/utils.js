@@ -29,9 +29,3 @@ export function toTime(seconds) {
 
   return values.map((n) => n.toString().padStart(2, "0")).join(":");
 }
-
-console.log(toTime(33));
-console.log(toTime(330));
-console.log(toTime(3300));
-console.log(toTime(33000));
-console.log(toTime(330000));
