@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { Icon as IconComponent } from "@iconify/react";
+import { Icon as IconComponent, InlineIcon } from "@iconify/react";
 import menu from "@iconify/icons-mdi-light/menu";
 import clock from "@iconify/icons-mdi-light/clock";
 import flag from "@iconify/icons-mdi-light/flag";
@@ -28,6 +28,7 @@ const ICONS = {
   chevronDown,
 };
 
-export default function Icon({ icon = "menu", size = 24 }) {
-  return <IconComponent icon={ICONS[icon]} width={size} height={size} />;
+export default function Icon({ icon = "menu", size = 24, inline }) {
+  const Component = inline ? InlineIcon : IconComponent;
+  return <Component icon={ICONS[icon]} width={size} height={size} />;
 }
