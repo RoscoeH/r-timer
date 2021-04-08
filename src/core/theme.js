@@ -1,7 +1,21 @@
+import "typeface-open-sans";
+
+const commonButtonStyles = {
+  outline: "none",
+  border: "default",
+  borderRadius: 7,
+  fontFamily: "body",
+  fontSize: 0,
+  lineHeight: "16px",
+  textTransform: "uppercase",
+  px: 3,
+  py: 2,
+};
+
 export default {
   fonts: {
-    body: '"Nunito", sans-serif',
-    heading: '"Nunito", sans-serif',
+    body: '"Open Sans", sans-serif',
+    heading: '"Open Sans", sans-serif',
     monospace: "Menlo, monospace",
   },
   fontSizes: [16, 24, 32, 48, 64, 96],
@@ -40,41 +54,27 @@ export default {
   },
   buttons: {
     primary: {
-      outline: "none",
-      borderRadius: 7,
-      border: "default",
+      ...commonButtonStyles,
       borderColor: "transparent",
-      textTransform: "uppercase",
-
       color: "dark",
       bg: "accent.green",
-      px: 3,
-      py: 2,
-
       "&:hover": {
         bg: "accent.hover.green",
       },
-
       "&:active": {
         borderColor: "dark",
       },
     },
     secondary: {
-      outline: "none",
-      borderRadius: 7,
-      border: "default",
+      ...commonButtonStyles,
       borderColor: "accent.green",
-      textTransform: "uppercase",
-
       color: "dark",
       bg: "transparent",
       px: 3,
       py: 2,
-
       "&:hover": {
         borderColor: "accent.hover.green",
       },
-
       "&:active": {
         borderColor: "dark",
       },
