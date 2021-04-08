@@ -16,5 +16,5 @@ Selected.args = { color: "purple" };
 
 export const Scrolling = Template.bind({});
 Scrolling.decorators = [
-  (Story) => <div style={{ width: "120px" }}>{Story()}</div>,
+  (Story) => <div style={{ width: "256px" }}>{Story()}</div>,
 ];
