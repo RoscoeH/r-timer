@@ -17,3 +17,6 @@ Primary.args = { type: "primary", children: "Start" };
 
 export const Secondary = Template.bind({});
 Secondary.args = { type: "secondary", children: "Start" };
+
+export const WithIcon = Template.bind({});
+WithIcon.args = { type: "primary", children: "Start", icon: "check" };

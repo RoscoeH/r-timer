@@ -40,19 +40,47 @@ export default {
   },
   buttons: {
     primary: {
-      color: "background",
-      bg: "blue",
+      outline: "none",
+      borderRadius: 7,
+      border: "default",
+      borderColor: "transparent",
+      textTransform: "uppercase",
+
+      color: "dark",
+      bg: "accent.green",
+      px: 3,
+      py: 2,
+
       "&:hover": {
-        bg: "text",
+        bg: "accent.hover.green",
+      },
+
+      "&:active": {
+        borderColor: "dark",
       },
     },
     secondary: {
-      color: "background",
-      bg: "secondary",
+      outline: "none",
+      borderRadius: 7,
+      border: "default",
+      borderColor: "accent.green",
+      textTransform: "uppercase",
+
+      color: "dark",
+      bg: "transparent",
+      px: 3,
+      py: 2,
+
+      "&:hover": {
+        borderColor: "accent.hover.green",
+      },
+
+      "&:active": {
+        borderColor: "dark",
+      },
     },
     icon: {
       outline: "none",
-      boxSizing: "border-box",
       bg: "light",
       color: "dark",
       border: "default",

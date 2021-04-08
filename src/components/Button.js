@@ -9,7 +9,7 @@ const TYPES = {
 
 const DEFAULT_ICON_SIZE = 24;
 
-export default function MyButton({ type, icon, children }) {
+export default function MyButton({ type = "primary", icon, children }) {
   const content =
     type === TYPES.icon ? (
       <Icon icon={icon} size={DEFAULT_ICON_SIZE} />
