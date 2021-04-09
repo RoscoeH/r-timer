@@ -1,4 +1,7 @@
-import React, { useEffect } from "react";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import { useEffect } from "react";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import useTimer from "../hooks/useTimer";
@@ -26,21 +29,23 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
   }, [angle, seconds, setSeconds, laps]);
 
   return (
-    <div ref={drag}>
-      <Timer
-        size={size}
-        angle={angle ? angle : secondsToAngle(seconds)}
-        snap={snap}
-      />
-      {DEBUG && (
-        <div>
-          <p>{`seconds: ${seconds}`}</p>
-          <p>{`currentAngle: ${currentAngle}`}</p>
-          <p>{`laps: ${laps}`}</p>
-          <p>{`prevQuadrant: ${prevQuadrant}`}</p>
-          <p>{`quadrant: ${quadrant}`}</p>
-        </div>
-      )}
+    <div sx={{ textAlign: "center" }}>
+      <div ref={drag}>
+        <Timer
+          size={size}
+          angle={angle ? angle : secondsToAngle(seconds)}
+          snap={snap}
+        />
+        {DEBUG && (
+          <div>
+            <p>{`seconds: ${seconds}`}</p>
+            <p>{`currentAngle: ${currentAngle}`}</p>
+            <p>{`laps: ${laps}`}</p>
+            <p>{`prevQuadrant: ${prevQuadrant}`}</p>
+            <p>{`quadrant: ${quadrant}`}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

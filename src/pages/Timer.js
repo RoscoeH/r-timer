@@ -12,9 +12,7 @@ export default function TimerPage() {
     <div>
       <Toolbar />
       <Times />
-      <div sx={{ textAlign: "center" }}>
-        <DragTimer />
-      </div>
+      <DragTimer />
       <Controls />
     </div>
   );
