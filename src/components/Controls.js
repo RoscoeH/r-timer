@@ -1,5 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { useDrag } from "react-dnd";
 import { jsx } from "theme-ui";
 
 import useTimer from "../hooks/useTimer";
@@ -9,7 +10,6 @@ export default function Controls() {
   const [{ seconds }, { setSeconds }] = useTimer("seconds");
 
   function cancel() {
-    console.log(">cancel");
     setSeconds(null);
   }
 

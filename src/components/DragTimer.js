@@ -8,7 +8,7 @@ import useTimer from "../hooks/useTimer";
 import useDragAngle from "../hooks/useDragAngle";
 import Timer from "./Timer";
 
-const DEBUG = true;
+const DEBUG = false;
 
 const secondsToAngle = (seconds) => (seconds / 3600) * 360;
 const angleToSeconds = (angle) => Math.round((angle / 360) * 3600);
@@ -17,6 +17,7 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
   const [{ seconds }, { setSeconds }] = useTimer("seconds");
   const [
     angle,
+    reset,
     drag,
     { laps, quadrant, prevQuadrant, currentAngle },
   ] = useDragAngle(size);
@@ -24,10 +25,15 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
   useEffect(() => {
     const newSeconds = angleToSeconds(angle);
     if (newSeconds && newSeconds !== seconds) {
-      console.log(">setSeconds from drag timer");
       setSeconds(newSeconds);
     }
   }, [angle, seconds, setSeconds]);
+
+  useEffect(() => {
+    if (angle === null && seconds === null) {
+      reset();
+    }
+  }, [angle, seconds, reset]);
 
   return (
     <div sx={{ textAlign: "center" }}>

@@ -30,10 +30,6 @@ export default function useDragAngle(size) {
       clientOffset: monitor.getClientOffset(),
       initialSourceClientOffset: monitor.getInitialSourceClientOffset(),
     }),
-    end: () => {
-      setCurrentAngle(null);
-      setLaps(0);
-    },
   }));
 
   useEffect(() => {
@@ -48,6 +44,8 @@ export default function useDragAngle(size) {
       if ((quadrant !== null && quadrant < 2) || previousQuadrant !== null) {
         setCurrentAngle(newAngle);
       }
+    } else {
+      setCurrentAngle(null);
     }
   }, [
     isDragging,
@@ -81,14 +79,19 @@ export default function useDragAngle(size) {
   }, [currentAngle, previousQuadrant]);
 
   const angle = useMemo(() => {
-    console.log("recalcAngle", "a", currentAngle, "l", laps);
     return currentAngle
       ? clampAngle(totalAngle(currentAngle, laps), 0, 360)
       : null;
   }, [currentAngle, laps]);
 
+  const reset = () => {
+    setLaps(0);
+    setPreviousQuadrant(null);
+  };
+
   return [
     angle,
+    reset,
     drag,
     {
       laps,
