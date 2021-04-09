@@ -1,6 +1,5 @@
-// import { useState, useEffect } from "react";
 import Observable from "observable-lite";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const initialState = {
   name: "Initial",

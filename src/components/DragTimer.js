@@ -34,6 +34,7 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
       />
       {DEBUG && (
         <div>
+          <p>{`seconds: ${seconds}`}</p>
           <p>{`currentAngle: ${currentAngle}`}</p>
           <p>{`laps: ${laps}`}</p>
           <p>{`prevQuadrant: ${prevQuadrant}`}</p>
