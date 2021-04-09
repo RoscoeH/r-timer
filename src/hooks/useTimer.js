@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 const initialState = {
   name: "Initial",
   color: "red",
-  seconds: 35 * 60,
+  seconds: null,
 };
 
 export const timer = new Observable(initialState);
@@ -20,19 +20,18 @@ export default function useTimer(...subscriptions) {
     [subscriptions]
   );
   const [state, setState] = useState(initialState);
-  const setKey = useCallback(
-    (key) => (value) => setState({ ...state, [key]: value }),
-    [state]
-  );
 
   useEffect(() => {
+    const setKey = (key) => (value) => {
+      setState((prev) => ({ ...prev, [key]: value }));
+    };
     const subscriptionMap = subs.map((path) => ({
       path,
       callback: setKey(path),
     }));
     subscriptionMap.forEach(subscribe);
     return () => subscriptionMap.forEach(unsubscribe);
-  }, [subs, setKey]);
+  }, [subs, state]);
 
   const actions = useMemo(
     () =>
