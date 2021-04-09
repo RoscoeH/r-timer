@@ -22,6 +22,7 @@ export default function useTimer(...subscriptions) {
 
   useEffect(() => {
     const setKey = (key) => (value) => {
+      console.log(">setKey", key, value);
       setState((prev) => ({ ...prev, [key]: value }));
     };
     const subscriptionMap = subs.map((path) => ({
@@ -30,7 +31,7 @@ export default function useTimer(...subscriptions) {
     }));
     subscriptionMap.forEach(subscribe);
     return () => subscriptionMap.forEach(unsubscribe);
-  }, [subs, state]);
+  }, [subs, state, setState]);
 
   const actions = useMemo(
     () =>

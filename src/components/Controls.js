@@ -9,6 +9,7 @@ export default function Controls() {
   const [{ seconds }, { setSeconds }] = useTimer("seconds");
 
   function cancel() {
+    console.log(">cancel");
     setSeconds(null);
   }
 

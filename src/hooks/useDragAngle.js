@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useDrag } from "react-dnd";
 
 import { toAngle } from "../core/utils";
@@ -30,6 +30,10 @@ export default function useDragAngle(size) {
       clientOffset: monitor.getClientOffset(),
       initialSourceClientOffset: monitor.getInitialSourceClientOffset(),
     }),
+    end: () => {
+      setCurrentAngle(null);
+      setLaps(0);
+    },
   }));
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export default function useDragAngle(size) {
       const newAngle = toAngle(radians);
       const quadrant = angleToQuadrant(newAngle);
 
-      if (quadrant < 2 || previousQuadrant !== null) {
+      if ((quadrant !== null && quadrant < 2) || previousQuadrant !== null) {
         setCurrentAngle(newAngle);
       }
     }
@@ -51,15 +55,7 @@ export default function useDragAngle(size) {
     clientOffset,
     radius,
     previousQuadrant,
-    laps,
   ]);
-
-  useEffect(() => {
-    const quadrant = angleToQuadrant(currentAngle);
-    if (currentAngle > 0 /*&& Math.abs(quadrant - previousQuadrant) === 1*/) {
-      setPreviousQuadrant(quadrant);
-    }
-  }, [currentAngle, previousQuadrant]);
 
   useEffect(() => {
     const quadrant = angleToQuadrant(currentAngle);
@@ -75,8 +71,24 @@ export default function useDragAngle(size) {
       setPreviousQuadrant(3);
     }
   }, [currentAngle, previousQuadrant, setPreviousQuadrant, laps, setLaps]);
+
+  useEffect(() => {
+    const quadrant = angleToQuadrant(currentAngle);
+
+    if (currentAngle > 0) {
+      setPreviousQuadrant(quadrant);
+    }
+  }, [currentAngle, previousQuadrant]);
+
+  const angle = useMemo(() => {
+    console.log("recalcAngle", "a", currentAngle, "l", laps);
+    return currentAngle
+      ? clampAngle(totalAngle(currentAngle, laps), 0, 360)
+      : null;
+  }, [currentAngle, laps]);
+
   return [
-    isDragging ? clampAngle(totalAngle(currentAngle, laps), 0, 360) : null,
+    angle,
     drag,
     {
       laps,
