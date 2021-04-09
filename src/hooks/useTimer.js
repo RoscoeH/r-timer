@@ -1,5 +1,4 @@
-import Observable from "observable-lite";
-import { useState, useEffect, useMemo } from "react";
+import React, { useState, createContext, useContext } from "react";
 
 const initialState = {
   name: "Initial",
@@ -7,45 +6,27 @@ const initialState = {
   seconds: null,
 };
 
-export const timer = new Observable(initialState);
+const TimerContext = createContext();
 
-const subscribe = ({ path, callback }) => timer.subscribe(path, callback);
-const unsubscribe = ({ path, callback }) => timer.unsubscribe(path, callback);
-const setValue = (path) => (value) => timer.set(path, value);
+export function TimerProvider({ children }) {
+  const [name, setName] = useState(initialState.name);
+  const [color, setColor] = useState(initialState.color);
+  const [seconds, setSeconds] = useState(initialState.seconds);
 
-export default function useTimer(...subscriptions) {
-  const subs = useMemo(
-    () => (Array.isArray(subscriptions) ? subscriptions : [subscriptions]),
-    [subscriptions]
+  const value = { name, setName, color, setColor, seconds, setSeconds };
+
+  return (
+    <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
   );
-  const [state, setState] = useState(initialState);
+}
 
-  useEffect(() => {
-    const setKey = (key) => (value) => {
-      console.log(">setKey", key, value);
-      setState((prev) => ({ ...prev, [key]: value }));
-    };
-    const subscriptionMap = subs.map((path) => ({
-      path,
-      callback: setKey(path),
-    }));
-    subscriptionMap.forEach(subscribe);
-    return () => subscriptionMap.forEach(unsubscribe);
-  }, [subs, state, setState]);
-
-  const actions = useMemo(
-    () =>
-      subs.reduce(
-        (prev, path) => ({
-          ...prev,
-          [`set${path.charAt(0).toUpperCase()}${path.substring(1)}`]: setValue(
-            path
-          ),
-        }),
-        {}
-      ),
-    [subs]
+export default function useTimer() {
+  const { name, setName, color, setColor, seconds, setSeconds } = useContext(
+    TimerContext
   );
 
-  return [state, actions];
+  return [
+    { name, color, seconds },
+    { setName, setColor, setSeconds },
+  ];
 }
