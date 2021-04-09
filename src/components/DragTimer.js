@@ -14,7 +14,7 @@ const secondsToAngle = (seconds) => (seconds / 3600) * 360;
 const angleToSeconds = (angle) => Math.round((angle / 360) * 3600);
 
 export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
-  const [{ seconds }, { setSeconds }] = useTimer();
+  const [{ seconds, color }, { setSeconds }] = useTimer();
   const [
     angle,
     reset,
@@ -40,6 +40,7 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
       <div ref={drag}>
         <Timer
           size={size}
+          color={color}
           angle={angle ? angle : secondsToAngle(seconds)}
           snap={snap}
         />

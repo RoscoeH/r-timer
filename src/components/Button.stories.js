@@ -23,3 +23,13 @@ Color.args = { type: "color", color: "purple" };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = { type: "primary", children: "Start", icon: "check" };
+
+export const PrimaryWithColor = Template.bind({});
+PrimaryWithColor.args = { type: "primary", color: "red", children: "Red" };
+
+export const SecondaryWithColor = Template.bind({});
+SecondaryWithColor.args = {
+  type: "primary",
+  color: "purple",
+  children: "Purple",
+};

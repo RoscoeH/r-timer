@@ -4,8 +4,13 @@ import { jsx, Button as ThemeUiButton, IconButton } from "theme-ui";
 import Icon from "./Icon";
 
 const TYPES = {
+  primary: "primary",
   icon: "icon",
+  color: "color",
 };
+
+const accent = (color) => `accent.${color}`;
+const hover = (color) => `accent.hover.${color}`;
 
 function renderTextButton({ children, icon }) {
   return icon ? (
@@ -24,6 +29,26 @@ const CONTENT = {
   icon: ({ icon }) => <Icon icon={icon} size={DEFAULT_ICON_SIZE} />,
 };
 
+const STYLES = {
+  icon: (color) => ({
+    borderColor: accent(color),
+    "&:hover": { borderColor: hover(color) },
+  }),
+  color: (color) => ({
+    bg: accent(color),
+    "&:hover": { borderColor: hover(color) },
+    "&:active": { borderColor: "dark" },
+  }),
+  primary: (color) => ({
+    bg: accent(color),
+    "&:hover": { bg: hover(color) },
+  }),
+  secondary: (color) => ({
+    borderColor: accent(color),
+    "&:hover": { borderColor: hover(color) },
+  }),
+};
+
 const DEFAULT_ICON_SIZE = 24;
 
 export default function MyButton({
@@ -35,17 +60,9 @@ export default function MyButton({
 }) {
   const renderContent = CONTENT[type] || renderTextButton;
   const Component = type === TYPES.icon ? IconButton : ThemeUiButton;
-  const colorProps = color
-    ? {
-        bg: `accent.${color}`,
-        sx: {
-          "&:hover": { borderColor: `accent.hover.${color}` },
-          "&:active": { borderColor: "dark" },
-        },
-      }
-    : {};
+  const renderStyles = STYLES[type] || (() => ({}));
   return (
-    <Component variant={type} {...colorProps} {...props}>
+    <Component variant={type} sx={{ ...renderStyles(color) }} {...props}>
       {renderContent({ type, icon, color, children })}
     </Component>
   );

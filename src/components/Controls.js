@@ -1,13 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useDrag } from "react-dnd";
 import { jsx } from "theme-ui";
 
 import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Controls() {
-  const [{ seconds }, { setSeconds }] = useTimer();
+  const [{ seconds, color }, { setSeconds }] = useTimer();
 
   function cancel() {
     setSeconds(null);
@@ -26,12 +25,13 @@ export default function Controls() {
       <Button
         type="secondary"
         icon="cancel"
+        color={color}
         sx={{ flex: 1, mr: 2 }}
         onClick={cancel}
       >
         Cancel
       </Button>
-      <Button icon="check" sx={{ flex: 1, ml: 2 }}>
+      <Button icon="check" color={color} sx={{ flex: 1, ml: 2 }}>
         Start
       </Button>
     </div>
