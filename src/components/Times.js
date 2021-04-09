@@ -10,8 +10,15 @@ export default function Times() {
   const [{ seconds }] = useTimer("seconds");
   const remainingTime = toTime(seconds);
   const finishTime = toFinishTime(seconds);
+  const visible = seconds !== null;
   return (
-    <div sx={{ display: "flex", justifyContent: "center" }}>
+    <div
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        opacity: visible ? 1 : 0,
+      }}
+    >
       <TimeDisplay>{remainingTime}</TimeDisplay>
       <TimeDisplay icon="flag">{finishTime}</TimeDisplay>
     </div>
