@@ -39,8 +39,6 @@ const Marks = ({ size }) => {
   );
 };
 
-const DEFAULT_OPACITY = 0.33;
-
 export default function Timer({
   size = DEFAULT_TIMER_SIZE,
   angle = 0,

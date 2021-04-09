@@ -12,6 +12,8 @@ export default function Times() {
   const finishTime = toFinishTime(seconds);
   const visible = seconds !== null;
 
+  console.log("seconds", seconds);
+
   return (
     <div
       sx={{

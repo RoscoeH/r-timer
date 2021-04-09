@@ -6,9 +6,13 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Controls() {
-  const [{ seconds, color }, { setSeconds }] = useTimer();
+  const [
+    { seconds, color, running, remainingSeconds },
+    { setSeconds, start, stop },
+  ] = useTimer();
 
   function cancel() {
+    stop();
     setSeconds(null);
   }
 
@@ -31,9 +35,18 @@ export default function Controls() {
       >
         Cancel
       </Button>
-      <Button icon="check" color={color} sx={{ flex: 1, ml: 2 }}>
-        Start
-      </Button>
+      {!running && (
+        <Button
+          icon="check"
+          color={color}
+          sx={{ flex: 1, ml: 2 }}
+          onClick={start}
+        >
+          Start
+        </Button>
+      )}
+      {remainingSeconds}
+      {/* <p>{running}</p> */}
     </div>
   );
 }
