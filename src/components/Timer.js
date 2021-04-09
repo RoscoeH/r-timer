@@ -39,7 +39,7 @@ const Marks = ({ size }) => {
   );
 };
 
-const DEFAULT_OPACITY = 1 / 3;
+const DEFAULT_OPACITY = 0.33;
 
 export default function Timer({
   size = DEFAULT_TIMER_SIZE,
@@ -65,14 +65,13 @@ export default function Timer({
           cx={radius}
           cy={radius}
           r={size / 2}
-          fill={color}
-          opacity={DEFAULT_OPACITY}
+          sx={{ fill: `accent.${color}` }}
         />
       ))}
       <path
         d={renderArc(radius, radians, handX, handY)}
-        fill={color}
-        opacity={DEFAULT_OPACITY}
+        sx={{ fill: `accent.${color}` }}
+        // opacity={DEFAULT_OPACITY}
       />
       <Marks size={size} />
       <circle cx={radius} cy={radius} r={size / 128} />

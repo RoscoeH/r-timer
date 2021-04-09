@@ -1,7 +1,7 @@
 import "typeface-open-sans";
 
 const baseAccents = [
-  { color: "red", rgb: [250, 33, 33] },
+  { color: "red", rgb: [255, 98, 98] },
   { color: "orange", rgb: [250, 150, 33] },
   { color: "yellow", rgb: [233, 250, 33] },
   { color: "green", rgb: [33, 250, 144] },

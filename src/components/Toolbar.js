@@ -17,13 +17,21 @@ export default function Toolbar() {
       }}
     >
       <Input
-        sx={{ flex: 1, m: 1 }}
+        sx={{
+          flex: 1,
+          m: 1,
+          borderColor: `accent.${color}`,
+          "&:hover": {
+            borderColor: `accent.hover.${color}`,
+          },
+          "&:active": { borderColor: "dark" },
+        }}
         placeholder="Timer"
         value={name}
         onChange={onNameChange}
       />
       <Button type="color" color={color} sx={{ m: 1 }} />
-      <Button type="icon" icon="save" sx={{ m: 1 }} />
+      <Button type="icon" color={color} icon="save" sx={{ m: 1 }} />
     </span>
   );
 }

@@ -29,7 +29,7 @@ PrimaryWithColor.args = { type: "primary", color: "red", children: "Red" };
 
 export const SecondaryWithColor = Template.bind({});
 SecondaryWithColor.args = {
-  type: "primary",
+  type: "secondary",
   color: "purple",
   children: "Purple",
 };
