@@ -3,7 +3,7 @@ import React, { useState, createContext, useContext } from "react";
 const initialState = {
   name: "Initial",
   color: "red",
-  seconds: null,
+  seconds: 35 * 60,
 };
 
 const TimerContext = createContext();

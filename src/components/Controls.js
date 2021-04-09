@@ -7,7 +7,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Controls() {
-  const [{ seconds }, { setSeconds }] = useTimer("seconds");
+  const [{ seconds }, { setSeconds }] = useTimer();
 
   function cancel() {
     setSeconds(null);

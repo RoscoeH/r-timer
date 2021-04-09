@@ -6,7 +6,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Toolbar() {
-  const [{ name, color }, { setName }] = useTimer("name", "color");
+  const [{ name, color }, { setName }] = useTimer();
   const onNameChange = (e) => setName(e.target.value);
 
   return (

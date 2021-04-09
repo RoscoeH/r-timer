@@ -7,12 +7,10 @@ import useTimer from "../hooks/useTimer";
 import TimeDisplay from "./TimeDisplay";
 
 export default function Times() {
-  const [{ seconds }] = useTimer("seconds");
+  const [{ seconds }] = useTimer();
   const remainingTime = toTime(seconds);
   const finishTime = toFinishTime(seconds);
   const visible = seconds !== null;
-
-  console.log("seconds", seconds);
 
   return (
     <div

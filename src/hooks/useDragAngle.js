@@ -10,7 +10,7 @@ const MAX_ANGLE = 360 * (MAX_LAPS + 1);
 const calculateRadians = (x, y) =>
   Math.atan2(y, x) + (x < 0 && y < 0 ? 2 * Math.PI : 0);
 const angleToQuadrant = (angle) => (angle ? Math.floor(angle / 90) : null);
-const clampAngle = (angle, min, max) => Math.max(Math.min(angle, MAX_ANGLE), 0);
+const clampAngle = (angle, min, max) => Math.max(Math.min(angle, max), min);
 const totalAngle = (angle, laps) => laps * 360 + angle;
 
 export default function useDragAngle(size) {
@@ -80,7 +80,7 @@ export default function useDragAngle(size) {
 
   const angle = useMemo(() => {
     return currentAngle
-      ? clampAngle(totalAngle(currentAngle, laps), 0, 360)
+      ? clampAngle(totalAngle(currentAngle, laps), 0, MAX_ANGLE)
       : null;
   }, [currentAngle, laps]);
 
