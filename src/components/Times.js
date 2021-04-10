@@ -1,17 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "theme-ui";
+import composeHooks from "react-hooks-compose";
 
 import { toTime, toFinishTime } from "../core/utils";
 import useTimer from "../hooks/useTimer";
 import TimeDisplay from "./TimeDisplay";
 
-export default function Times() {
-  const [{ seconds, remaining, running }] = useTimer();
-  const secs = running ? remaining : seconds;
-  const remainingTime = toTime(secs);
-  const finishTime = toFinishTime(secs);
-  const visible = secs !== null;
+const Times = ({ seconds }) => {
+  const remainingTime = toTime(seconds);
+  const finishTime = toFinishTime(seconds);
+  const visible = seconds !== null;
 
   return (
     <div
@@ -25,4 +24,6 @@ export default function Times() {
       <TimeDisplay icon="flag">{finishTime}</TimeDisplay>
     </div>
   );
-}
+};
+
+export default composeHooks({ useTimer })(Times);
