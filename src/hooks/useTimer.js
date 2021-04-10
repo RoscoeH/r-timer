@@ -51,8 +51,16 @@ export default function useTimer() {
     stop,
   } = useContext(TimerContext);
 
-  return [
-    { name, color, seconds, remaining, running },
-    { setName, setColor, setSeconds, start, stop },
-  ];
+  return {
+    name,
+    color,
+    seconds,
+    remaining,
+    running,
+    setName,
+    setColor,
+    setSeconds,
+    start,
+    stop,
+  };
 }

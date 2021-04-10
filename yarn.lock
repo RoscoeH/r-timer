@@ -11707,6 +11707,11 @@ react-helmet-async@^1.0.7:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
+react-hooks-compose@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/react-hooks-compose/-/react-hooks-compose-2.0.12.tgz#1a3aa14647b532e3125263bf67a41da2621e541e"
+  integrity sha512-KTj4df688mfG4zJ/7P4NngxjpHuPR0DD9f9ISTqM649W2hBI31UvL+rBeKIE1rPPZZjpweSLjwMh1wLNNnUp0w==
+
 react-inspector@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-5.1.0.tgz#45a325e15f33e595be5356ca2d3ceffb7d6b8c3a"

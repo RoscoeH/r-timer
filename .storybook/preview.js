@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@theme-ui/theme-provider";
 
 import theme from "../src/core/theme";
+import { TimerProvider } from "../src/hooks/useTimer";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,4 +15,5 @@ export const parameters = {
 
 export const decorators = [
   (Story) => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>,
+  (Story) => <TimerProvider>{Story()}</TimerProvider>,
 ];

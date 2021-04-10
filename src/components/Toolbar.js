@@ -1,12 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Input } from "theme-ui";
+import composeHooks from "react-hooks-compose";
 
 import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
-export default function Toolbar() {
-  const [{ name, color }, { setName }] = useTimer();
+const Toolbar = ({ name, color, setName }) => {
   const onNameChange = (e) => setName(e.target.value);
 
   return (
@@ -34,4 +34,6 @@ export default function Toolbar() {
       <Button type="icon" color={color} icon="save" sx={{ m: 1 }} />
     </span>
   );
-}
+};
+
+export default composeHooks({ useTimer })(Toolbar);
