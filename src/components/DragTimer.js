@@ -2,19 +2,24 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { useEffect } from "react";
+import composeHooks from "react-hooks-compose";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
+import { angleToSeconds, secondsToAngle } from "../core/utils";
 import useTimer from "../hooks/useTimer";
 import useDragAngle from "../hooks/useDragAngle";
 import Timer from "./Timer";
 
 const DEBUG = false;
 
-const secondsToAngle = (seconds) => (seconds / 3600) * 360;
-const angleToSeconds = (angle) => Math.round((angle / 360) * 3600);
-
-export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
-  const { seconds, color, running, setSeconds } = useTimer();
+const DragTimer = ({
+  size = DEFAULT_TIMER_SIZE,
+  color = "green",
+  seconds,
+  setSeconds,
+  running,
+  snap = true,
+}) => {
   const [
     angle,
     reset,
@@ -56,4 +61,6 @@ export default function DragTimer({ size = DEFAULT_TIMER_SIZE, snap = true }) {
       </div>
     </div>
   );
-}
+};
+
+export default composeHooks({ useTimer })(DragTimer);

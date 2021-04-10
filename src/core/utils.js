@@ -36,3 +36,11 @@ export function toFinishTime(seconds) {
   const time = date.toTimeString().split(" ")[0];
   return time.substring(0, 5);
 }
+
+export function secondsToAngle(seconds) {
+  return (seconds / 3600) * 360;
+}
+
+export function angleToSeconds(angle) {
+  return Math.round((angle / 360) * 3600);
+}
