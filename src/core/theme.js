@@ -49,6 +49,7 @@ export default {
   fontSizes: [16, 24, 32, 48, 64, 96],
   space: [0, 4, 8, 16, 32, 64, 128, 246, 512],
   sizes: [0, 4, 8, 16, 32, 64, 128, 246, 512],
+  radii: [0, 2, 4, 8, 16, 24, 32, 99999],
 
   colors: {
     text: "#000",
@@ -67,7 +68,6 @@ export default {
   borders: {
     default: "1px solid",
   },
-  radii: [0, 2, 4, 8, 16, 32, 64, 99999],
   styles: {
     root: {
       fontFamily: "body",
