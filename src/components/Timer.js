@@ -69,7 +69,6 @@ export default function Timer({
       <path
         d={renderArc(radius, radians, handX, handY)}
         sx={{ fill: `accent.${color}` }}
-        // opacity={DEFAULT_OPACITY}
       />
       <Marks size={size} />
       <circle cx={radius} cy={radius} r={size / 128} />

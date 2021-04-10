@@ -6,10 +6,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Controls() {
-  const [
-    { seconds, color, running, remainingSeconds },
-    { setSeconds, start, stop },
-  ] = useTimer();
+  const [{ seconds, color, running }, { setSeconds, start, stop }] = useTimer();
 
   function cancel() {
     stop();
@@ -45,8 +42,6 @@ export default function Controls() {
           Start
         </Button>
       )}
-      {remainingSeconds}
-      {/* <p>{running}</p> */}
     </div>
   );
 }

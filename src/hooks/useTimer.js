@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  createContext,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, createContext, useContext } from "react";
 
 import useCountdown from "./useCountdown";
 
@@ -20,10 +14,10 @@ export function TimerProvider({ children }) {
   const [name, setName] = useState(initialState.name);
   const [color, setColor] = useState(initialState.color);
   const [seconds, setSeconds] = useState(initialState.seconds);
-  const [remainingSeconds, setRemainingSeconds] = useState(
-    initialState.seconds
+
+  const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
+    10 * 60
   );
-  const [running, setRunning] = useState(false);
 
   const value = {
     name,
@@ -32,10 +26,10 @@ export function TimerProvider({ children }) {
     setColor,
     seconds,
     setSeconds,
-    remainingSeconds,
-    setRemainingSeconds,
+    remaining,
     running,
-    setRunning,
+    start,
+    stop,
   };
 
   return (
@@ -51,32 +45,14 @@ export default function useTimer() {
     setColor,
     seconds,
     setSeconds,
-    remainingSeconds,
-    setRemainingSeconds,
+    remaining,
     running,
-    setRunning,
+    start,
+    stop,
   } = useContext(TimerContext);
 
-  const [
-    { seconds: countdownSeconds, running: countdownRunning },
-    { start, stop },
-  ] = useCountdown(10 * 60);
-
-  useEffect(() => {
-    if (countdownRunning) {
-      setRemainingSeconds(countdownSeconds);
-    }
-  }, [countdownRunning, countdownSeconds, setRemainingSeconds]);
-
-  useEffect(() => {
-    if (countdownRunning !== running) {
-      console.log(">setRunning", countdownRunning, running);
-      setRunning(countdownRunning);
-    }
-  }, [running, countdownRunning, setRunning]);
-
   return [
-    { name, color, seconds, remainingSeconds, running },
+    { name, color, seconds, remaining, running },
     { setName, setColor, setSeconds, start, stop },
   ];
 }

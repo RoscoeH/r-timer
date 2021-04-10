@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
-export default function useCountdown(initialSeconds, autostart = false) {
+export default function useCountdown(initialSeconds) {
   const milisecond = useRef(initialSeconds * 1000);
   const previous = useRef(milisecond);
   const [seconds, setSeconds] = useState(initialSeconds);
-  const [running, setRunning] = useState(autostart);
+  const [running, setRunning] = useState(false);
 
   useEffect(() => {
     if (!running || milisecond.current <= 0) return;
@@ -46,12 +46,18 @@ export default function useCountdown(initialSeconds, autostart = false) {
   }, [running]);
 
   const start = useCallback(() => {
+    console.log(">start");
     setRunning(true);
-  }, []);
+  }, [setRunning]);
 
   const stop = useCallback(() => {
+    console.log(">stop");
     setRunning(false);
-  }, []);
+  }, [setRunning]);
+
+  useEffect(() => {
+    console.log("r", running);
+  }, [running]);
 
   return [
     { seconds, running },
