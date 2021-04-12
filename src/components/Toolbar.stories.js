@@ -4,7 +4,7 @@ import Toolbar from "../components/Toolbar";
 export default {
   title: "Components/Toolbar",
   component: Toolbar,
-  argTypes: { setName: { action: true } },
+  argTypes: { setTitle: { action: true } },
 };
 
 const Template = (args) => <Toolbar {...args} />;

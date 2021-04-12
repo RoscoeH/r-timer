@@ -14,12 +14,20 @@ export default function TimerListItem({
       sx={{
         display: "flex",
         alignItems: "center",
+        border: "default",
+        borderColor: "transparent",
+        borderRadius: 4,
+        userSelect: "none",
+        cursor: "pointer",
         p: 3,
         "& > *": {
           m: 2,
         },
         "&:hover": {
           bg: "hover",
+        },
+        "&:active": {
+          borderColor: "dark",
         },
       }}
     >

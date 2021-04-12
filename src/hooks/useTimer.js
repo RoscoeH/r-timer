@@ -1,23 +1,38 @@
 import React, { useState, createContext, useContext } from "react";
 import { useCallback } from "react";
-import createPersistedState from "use-persisted-state";
+import { createLocalStorageStateHook } from "use-local-storage-state";
 
 import useCountdown from "./useCountdown";
 
-const useTimersState = createPersistedState("timers");
-
-const initialTimers = [];
+const initialTimers = [
+  {
+    title: "Work",
+    color: "green",
+    seconds: 25 * 60,
+  },
+  {
+    title: "Short break",
+    color: "blue",
+    seconds: 5 * 60,
+  },
+  {
+    title: "Long break",
+    color: "darkBlue",
+    seconds: 30 * 60,
+  },
+];
 const initialState = {
-  name: null,
+  title: null,
   color: "green",
   seconds: null,
 };
 
 const TimerContext = createContext();
+const useStorage = createLocalStorageStateHook("timers", initialTimers);
 
 export function TimerProvider({ children }) {
-  const [timers, setTimers] = useTimersState(initialTimers);
-  const [name, setName] = useState(initialState.name);
+  const [timers, setTimers] = useStorage();
+  const [title, setTitle] = useState(initialState.title);
   const [color, setColor] = useState(initialState.color);
   const [seconds, setSeconds] = useState(initialState.seconds);
 
@@ -29,16 +44,16 @@ export function TimerProvider({ children }) {
     setTimers([
       ...timers,
       {
-        name,
+        title,
         color,
         seconds,
       },
     ]);
-  }, [timers, name, color, seconds, setTimers]);
+  }, [timers, title, color, seconds, setTimers]);
 
   const value = {
-    name,
-    setName,
+    title,
+    setTitle,
     color,
     setColor,
     seconds: running ? remaining : seconds,
@@ -57,8 +72,8 @@ export function TimerProvider({ children }) {
 
 export default function useTimer() {
   const {
-    name,
-    setName,
+    title,
+    setTitle,
     color,
     setColor,
     seconds,
@@ -69,10 +84,9 @@ export default function useTimer() {
     timers,
     saveTimer,
   } = useContext(TimerContext);
-
   return {
-    name,
-    setName,
+    title,
+    setTitle,
     color,
     setColor,
     seconds,

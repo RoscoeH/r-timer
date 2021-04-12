@@ -7,9 +7,8 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 import ColorPicker from "./ColorPicker";
 
-const Toolbar = ({ name, setName, color, setColor, timers, saveTimer }) => {
-  const onNameChange = (e) => setName(e.target.value);
-  console.log(timers);
+const Toolbar = ({ title, setTitle, color, setColor, timers, saveTimer }) => {
+  const onTitleChange = (e) => setTitle(e.target.value);
   return (
     <span
       sx={{
@@ -28,8 +27,8 @@ const Toolbar = ({ name, setName, color, setColor, timers, saveTimer }) => {
           "&:active": { borderColor: "dark" },
         }}
         placeholder="Timer"
-        value={name}
-        onChange={onNameChange}
+        value={title}
+        onChange={onTitleChange}
       />
       <ColorPicker color={color} onPick={setColor} />
       <Button
