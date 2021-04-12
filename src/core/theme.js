@@ -101,8 +101,6 @@ export default {
       borderColor: "accent.green",
       color: "dark",
       bg: "transparent",
-      px: 3,
-      py: 2,
       "&:hover": {
         borderColor: "accent.hover.green",
       },

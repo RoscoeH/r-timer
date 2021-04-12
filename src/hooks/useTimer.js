@@ -24,7 +24,7 @@ const initialTimers = [
 const initialState = {
   title: null,
   color: "green",
-  seconds: null,
+  seconds: 10 * 60,
 };
 
 const TimerContext = createContext();

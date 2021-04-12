@@ -51,7 +51,7 @@ const STYLES = {
 
 const DEFAULT_ICON_SIZE = 24;
 
-export default function MyButton({
+export default function Button({
   type = "primary",
   icon,
   color,

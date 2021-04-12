@@ -5,7 +5,10 @@ import Timer from "./pages/Timer";
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      // sx={{ isolation: "isolate", zIndex: 9999999, position: "relative" }}
+    >
       <Router>
         <Switch>
           <Route path="/timer">
