@@ -62,7 +62,7 @@ export default function ColorPicker({ color, onPick }) {
       <Button
         type="color"
         color={color}
-        sx={{ borderColor: "dark" }}
+        sx={{ borderColor: open ? "dark" : "auto" }}
         onClick={toggle}
       />
     </span>
