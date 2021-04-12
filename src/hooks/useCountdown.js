@@ -20,7 +20,6 @@ export default function useCountdown(initialSeconds) {
 
       if (milisecond.current <= 0) {
         setSeconds(0);
-        console.log("cancelAnimationFrame(zero)", handle, milisecond.current);
         cancelAnimationFrame(handle);
       } else {
         const seconds = Math.floor(milisecond.current / 1000);
@@ -40,7 +39,6 @@ export default function useCountdown(initialSeconds) {
     handle = window.requestAnimationFrame(step);
 
     return () => {
-      console.log("cancelAnimationFrame(pause)", handle, milisecond.current);
       cancelAnimationFrame(handle);
     };
   }, [running]);
@@ -48,28 +46,17 @@ export default function useCountdown(initialSeconds) {
   useEffect(() => {
     if (!running && initialSeconds !== seconds) {
       milisecond.current = initialSeconds * 1000;
-      console.log("set milli");
       setSeconds(initialSeconds);
-      console.log("set secodns");
     }
   }, [running, seconds, initialSeconds, setSeconds, milisecond]);
 
-  const start = useCallback(
-    (seconds) => {
-      console.log(">start");
-      setRunning(true);
-    },
-    [setRunning]
-  );
-
-  const stop = useCallback(() => {
-    console.log(">stop");
-    setRunning(false);
+  const start = useCallback(() => {
+    setRunning(true);
   }, [setRunning]);
 
-  useEffect(() => {
-    console.log("r", running);
-  }, [running]);
+  const stop = useCallback(() => {
+    setRunning(false);
+  }, [setRunning]);
 
   return [
     { seconds, running },
