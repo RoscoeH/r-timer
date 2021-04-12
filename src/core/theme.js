@@ -9,7 +9,7 @@ const baseAccents = [
   { color: "darkBlue", rgb: [33, 159, 250] },
   { color: "purple", rgb: [128, 33, 250] },
   { color: "pink", rgb: [250, 33, 228] },
-  { color: "black", rgb: [0, 0, 0] },
+  { color: "black", rgb: [150, 150, 150] },
 ];
 
 const accents = baseAccents.reduce(

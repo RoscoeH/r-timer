@@ -20,7 +20,7 @@ export default function useModal(Component, options = { backdrop: true }) {
       onClick={toggle}
     >
       <div sx={{ position: "relative" }}>
-        <div sx={{ position: "absolute", left: x, top: y }}>
+        <div sx={{ position: "absolute", left: x, top: y, zIndex: 1 }}>
           <Component {...props} />
         </div>
       </div>

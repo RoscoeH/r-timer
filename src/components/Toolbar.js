@@ -7,7 +7,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 import ColorPicker from "./ColorPicker";
 
-const Toolbar = ({ name, color, setName }) => {
+const Toolbar = ({ name, setName, color, setColor }) => {
   const onNameChange = (e) => setName(e.target.value);
 
   return (
@@ -31,7 +31,7 @@ const Toolbar = ({ name, color, setName }) => {
         value={name}
         onChange={onNameChange}
       />
-      <ColorPicker />
+      <ColorPicker color={color} onPick={setColor} />
       <Button type="icon" color={color} icon="save" sx={{ m: 1 }} />
     </span>
   );
