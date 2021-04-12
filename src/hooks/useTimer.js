@@ -1,7 +1,12 @@
 import React, { useState, createContext, useContext } from "react";
+import { useCallback } from "react";
+import createPersistedState from "use-persisted-state";
 
 import useCountdown from "./useCountdown";
 
+const useTimersState = createPersistedState("timers");
+
+const initialTimers = [];
 const initialState = {
   name: null,
   color: "green",
@@ -11,6 +16,7 @@ const initialState = {
 const TimerContext = createContext();
 
 export function TimerProvider({ children }) {
+  const [timers, setTimers] = useTimersState(initialTimers);
   const [name, setName] = useState(initialState.name);
   const [color, setColor] = useState(initialState.color);
   const [seconds, setSeconds] = useState(initialState.seconds);
@@ -18,6 +24,17 @@ export function TimerProvider({ children }) {
   const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
     seconds
   );
+
+  const saveTimer = useCallback(() => {
+    setTimers([
+      ...timers,
+      {
+        name,
+        color,
+        seconds,
+      },
+    ]);
+  }, [timers, name, color, seconds, setTimers]);
 
   const value = {
     name,
@@ -29,6 +46,8 @@ export function TimerProvider({ children }) {
     running,
     start,
     stop,
+    timers,
+    saveTimer,
   };
 
   return (
@@ -47,6 +66,8 @@ export default function useTimer() {
     running,
     start,
     stop,
+    timers,
+    saveTimer,
   } = useContext(TimerContext);
 
   return {
@@ -59,5 +80,7 @@ export default function useTimer() {
     running,
     start,
     stop,
+    timers,
+    saveTimer,
   };
 }
