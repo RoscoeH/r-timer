@@ -8,6 +8,7 @@ export default function TimerListItem({
   title = "Title",
   color = "green",
   seconds = 360,
+  onClick,
 }) {
   return (
     <div
@@ -30,6 +31,7 @@ export default function TimerListItem({
           borderColor: "dark",
         },
       }}
+      onClick={onClick}
     >
       <div
         sx={{ width: 3, height: 3, bg: `accent.${color}`, borderRadius: 7 }}

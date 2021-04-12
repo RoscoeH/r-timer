@@ -51,6 +51,20 @@ export function TimerProvider({ children }) {
     ]);
   }, [timers, title, color, seconds, setTimers]);
 
+  const setTimer = useCallback(
+    (timerTitle) => {
+      console.log(">setTimer");
+      const timer = timers.find((t) => t.title === timerTitle);
+      if (timer) {
+        stop();
+        setTitle(timer.title);
+        setColor(timer.color);
+        setSeconds(timer.seconds);
+      }
+    },
+    [timers, stop, setTitle, setColor, setSeconds]
+  );
+
   const value = {
     title,
     setTitle,
@@ -63,6 +77,7 @@ export function TimerProvider({ children }) {
     stop,
     timers,
     saveTimer,
+    setTimer,
   };
 
   return (
@@ -71,30 +86,5 @@ export function TimerProvider({ children }) {
 }
 
 export default function useTimer() {
-  const {
-    title,
-    setTitle,
-    color,
-    setColor,
-    seconds,
-    setSeconds,
-    running,
-    start,
-    stop,
-    timers,
-    saveTimer,
-  } = useContext(TimerContext);
-  return {
-    title,
-    setTitle,
-    color,
-    setColor,
-    seconds,
-    setSeconds,
-    running,
-    start,
-    stop,
-    timers,
-    saveTimer,
-  };
+  return useContext(TimerContext);
 }
