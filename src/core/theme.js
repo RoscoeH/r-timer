@@ -59,6 +59,7 @@ export default {
     dark: "#000",
     light: "#fff",
     backdrop: "rgba(0,0,0,0.1)",
+    hover: "rgba(0,0,0,0.05)",
     accent: {
       ...accents,
       hover: {

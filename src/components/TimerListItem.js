@@ -18,6 +18,9 @@ export default function TimerListItem({
         "& > *": {
           m: 2,
         },
+        "&:hover": {
+          bg: "hover",
+        },
       }}
     >
       <div
