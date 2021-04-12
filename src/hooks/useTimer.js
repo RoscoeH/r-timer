@@ -4,6 +4,13 @@ import { createLocalStorageStateHook } from "use-local-storage-state";
 
 import useCountdown from "./useCountdown";
 
+const toId = (title) => title.trim().toLowerCase();
+const mapToId = ({ title, ...timer }) => ({
+  ...timer,
+  title,
+  id: toId(title),
+});
+
 const initialTimers = [
   {
     title: "Work",
@@ -20,7 +27,7 @@ const initialTimers = [
     color: "darkBlue",
     seconds: 30 * 60,
   },
-];
+].map(mapToId);
 const initialState = {
   title: null,
   color: "green",
@@ -41,19 +48,30 @@ export function TimerProvider({ children }) {
   );
 
   const saveTimer = useCallback(() => {
-    setTimers([
-      ...timers,
-      {
-        title,
-        color,
-        seconds,
-      },
-    ]);
+    const id = toId(title);
+    const currentTimer = timers.find((t) => t.id === id);
+
+    if (currentTimer) {
+      // Update timer
+      setTimers(
+        timers.map((t) => (t.id === id ? { ...t, title, color, seconds } : t))
+      );
+    } else {
+      // Save new timer
+      setTimers([
+        ...timers,
+        {
+          id: toId(title),
+          title,
+          color,
+          seconds,
+        },
+      ]);
+    }
   }, [timers, title, color, seconds, setTimers]);
 
   const setTimer = useCallback(
     (timerTitle) => {
-      console.log(">setTimer");
       const timer = timers.find((t) => t.title === timerTitle);
       if (timer) {
         stop();
