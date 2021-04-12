@@ -58,6 +58,7 @@ export default {
     secondary: "blue",
     dark: "#000",
     light: "#fff",
+    backdrop: "rgba(0,0,0,0.1)",
     accent: {
       ...accents,
       hover: {

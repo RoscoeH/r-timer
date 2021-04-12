@@ -5,6 +5,7 @@ import composeHooks from "react-hooks-compose";
 
 import useTimer from "../hooks/useTimer";
 import Button from "./Button";
+import ColorPicker from "./ColorPicker";
 
 const Toolbar = ({ name, color, setName }) => {
   const onNameChange = (e) => setName(e.target.value);
@@ -30,7 +31,7 @@ const Toolbar = ({ name, color, setName }) => {
         value={name}
         onChange={onNameChange}
       />
-      <Button type="color" color={color} sx={{ m: 1 }} />
+      <ColorPicker />
       <Button type="icon" color={color} icon="save" sx={{ m: 1 }} />
     </span>
   );
