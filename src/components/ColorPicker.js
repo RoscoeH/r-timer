@@ -45,7 +45,6 @@ export default function ColorPicker({ color, onPick }) {
   const [ref, { x, y }] = useDimensions();
 
   const pickColor = (color) => {
-    console.log("pick", color);
     toggle();
     onPick && onPick(color);
   };
