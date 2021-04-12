@@ -3,9 +3,9 @@ import React, { useState, createContext, useContext } from "react";
 import useCountdown from "./useCountdown";
 
 const initialState = {
-  name: "Initial",
-  color: "red",
-  seconds: 35 * 60,
+  name: null,
+  color: "green",
+  seconds: null,
 };
 
 const TimerContext = createContext();
@@ -16,7 +16,7 @@ export function TimerProvider({ children }) {
   const [seconds, setSeconds] = useState(initialState.seconds);
 
   const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
-    10 * 60
+    seconds
   );
 
   const value = {

@@ -45,10 +45,22 @@ export default function useCountdown(initialSeconds) {
     };
   }, [running]);
 
-  const start = useCallback(() => {
-    console.log(">start");
-    setRunning(true);
-  }, [setRunning]);
+  useEffect(() => {
+    if (!running && initialSeconds !== seconds) {
+      milisecond.current = initialSeconds * 1000;
+      console.log("set milli");
+      setSeconds(initialSeconds);
+      console.log("set secodns");
+    }
+  }, [running, seconds, initialSeconds, setSeconds, milisecond]);
+
+  const start = useCallback(
+    (seconds) => {
+      console.log(">start");
+      setRunning(true);
+    },
+    [setRunning]
+  );
 
   const stop = useCallback(() => {
     console.log(">stop");
