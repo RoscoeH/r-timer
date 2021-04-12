@@ -25,7 +25,7 @@ const DragTimer = ({
     reset,
     drag,
     { laps, quadrant, prevQuadrant, currentAngle },
-  ] = useDragAngle(size);
+  ] = useDragAngle(size, 120);
 
   useEffect(() => {
     const newSeconds = angleToSeconds(angle);

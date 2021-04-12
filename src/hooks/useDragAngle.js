@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useDrag } from "react-dnd";
 
-import { toAngle } from "../core/utils";
+import { snapValue, toAngle } from "../core/utils";
 
 const DRAG_TYPE = "TIMER";
 const MAX_LAPS = 2;
@@ -13,7 +13,7 @@ const angleToQuadrant = (angle) => (angle ? Math.floor(angle / 90) : null);
 const clampAngle = (angle, min, max) => Math.max(Math.min(angle, max), min);
 const totalAngle = (angle, laps) => laps * 360 + angle;
 
-export default function useDragAngle(size) {
+export default function useDragAngle(size, steps) {
   const radius = size / 2;
   const [currentAngle, setCurrentAngle] = useState(null);
   const [previousQuadrant, setPreviousQuadrant] = useState(null);
@@ -37,6 +37,7 @@ export default function useDragAngle(size) {
       const x = -radius + clientOffset.x - initialSourceClientOffset.x;
       const y = -radius + clientOffset.y - initialSourceClientOffset.y;
       let radians = Math.PI / 2 + calculateRadians(x, y);
+      radians = steps ? snapValue(radians, (2 * Math.PI) / steps) : radians;
       radians = Math.max(radians, 0);
       const newAngle = toAngle(radians);
       const quadrant = angleToQuadrant(newAngle);
@@ -53,6 +54,7 @@ export default function useDragAngle(size) {
     clientOffset,
     radius,
     previousQuadrant,
+    steps,
   ]);
 
   useEffect(() => {
