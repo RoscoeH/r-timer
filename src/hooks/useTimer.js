@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 import { useCallback } from "react";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-import useAlarm from "./useAlarm";
+import useSound from "./useAlarm";
 import useCountdown from "./useCountdown";
 
 const toId = (title) => title.trim().toLowerCase();
@@ -39,7 +39,7 @@ const TimerContext = createContext();
 const useStorage = createLocalStorageStateHook("timers", initialTimers);
 
 export function TimerProvider({ children }) {
-  const playAlarm = useAlarm();
+  const { alarm } = useSound();
   const [timers, setTimers] = useStorage();
   const [title, setTitle] = useState(initialState.title);
   const [color, setColor] = useState(initialState.color);
@@ -47,7 +47,7 @@ export function TimerProvider({ children }) {
 
   const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
     seconds,
-    playAlarm
+    alarm
   );
 
   const saveTimer = useCallback(() => {

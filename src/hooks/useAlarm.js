@@ -4,6 +4,11 @@ const BEEP_PER_PULSE = 2;
 const BEEP_INTERVAL = 225;
 const PULSE_INTERVAL = 1000;
 
+function clack() {
+  const clack = new Audio("clack.ogg");
+  clack.play();
+}
+
 function playBeep() {
   const beep = new Audio("beep.wav");
   beep.play();
@@ -22,8 +27,6 @@ function alarm() {
   );
 }
 
-export default function useAlarm() {
-  const play = () => alarm();
-
-  return play;
+export default function useSound() {
+  return { alarm, clack };
 }
