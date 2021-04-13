@@ -37,11 +37,11 @@ const STYLES = {
   color: (color) => ({
     bg: accent(color),
     "&:hover": { borderColor: hover(color) },
-    "&:active": { borderColor: "dark" },
+    "&:active": { borderColor: "text" },
   }),
   primary: (color) => ({
     bg: accent(color),
-    "&:hover": { bg: hover(color) },
+    "&:hover": { bg: hover(color), color: "dark" },
   }),
   secondary: (color) => ({
     borderColor: accent(color),

@@ -5,6 +5,8 @@ import { TouchBackend } from "react-dnd-touch-backend";
 
 import Timer from "./Timer";
 
+console.log(INITIAL_VIEWPORTS);
+
 export default {
   title: "Pages/Timer",
   component: Timer,
@@ -25,4 +27,11 @@ export default {
 
 const Template = (args) => <Timer {...args} />;
 
-export const Default = Template.bind({});
+export const Mobile = Template.bind({});
+
+export const Tablet = Template.bind({});
+Tablet.parameters = {
+  viewport: {
+    defaultViewport: "ipad",
+  },
+};

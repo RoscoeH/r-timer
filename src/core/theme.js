@@ -54,16 +54,22 @@ export default {
   colors: {
     text: "#000",
     background: "#fff",
-    primary: "#21fa90",
-    secondary: "blue",
     dark: "#000",
     light: "#fff",
+    primary: "#21fa90",
+    secondary: "blue",
     backdrop: "rgba(0,0,0,0.1)",
     hover: "rgba(0,0,0,0.05)",
     accent: {
       ...accents,
       hover: {
         ...hoverAccents,
+      },
+    },
+    modes: {
+      dark: {
+        text: "#fff",
+        background: "#333",
       },
     },
   },
@@ -87,31 +93,31 @@ export default {
     primary: {
       ...commonButtonStyles,
       borderColor: "transparent",
-      color: "dark",
+      color: "text",
       bg: "accent.green",
       "&:hover": {
         bg: "accent.hover.green",
       },
       "&:active": {
-        borderColor: "dark",
+        borderColor: "text",
       },
     },
     secondary: {
       ...commonButtonStyles,
       borderColor: "accent.green",
-      color: "dark",
+      color: "text",
       bg: "transparent",
       "&:hover": {
         borderColor: "accent.hover.green",
       },
       "&:active": {
-        borderColor: "dark",
+        borderColor: "text",
       },
     },
     icon: {
       outline: "none",
-      bg: "light",
-      color: "dark",
+      bg: "background",
+      color: "text",
       border: "default",
       borderColor: "accent.green",
       borderRadius: 7,
@@ -125,7 +131,7 @@ export default {
       },
 
       "&:active": {
-        borderColor: "dark",
+        borderColor: "text",
       },
     },
     color: {
@@ -138,7 +144,7 @@ export default {
       p: 0,
 
       "&:active": {
-        borderColor: "dark",
+        borderColor: "text",
       },
     },
   },
@@ -155,7 +161,7 @@ export default {
         borderColor: "accent.hover.green",
       },
       "&:focus": {
-        borderColor: "dark",
+        borderColor: "text",
       },
     },
   },

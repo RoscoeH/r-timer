@@ -28,7 +28,7 @@ export default function TimerListItem({
           bg: "hover",
         },
         "&:active": {
-          borderColor: "dark",
+          borderColor: "text",
         },
       }}
       onClick={onClick}

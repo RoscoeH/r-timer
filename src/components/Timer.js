@@ -22,6 +22,7 @@ const Mark = ({ size, angle, big = false }) => {
       width={width}
       height={height}
       transform={`rotate(${angle} ${center} ${center})`}
+      sx={{ fill: "text" }}
       opacity="0.5"
     />
   );
@@ -71,14 +72,14 @@ export default function Timer({
         sx={{ fill: `accent.${color}` }}
       />
       <Marks size={size} />
-      <circle cx={radius} cy={radius} r={size / 128} />
+      <circle cx={radius} cy={radius} r={size / 128} sx={{ fill: "text" }} />
       <line
         x1={radius}
         y1={radius}
         x2={radius}
         y2="0"
         transform={`rotate(${remainingAngle} ${radius} ${radius})`}
-        sx={{ stroke: "dark" }}
+        sx={{ stroke: "text" }}
       />
     </svg>
   );

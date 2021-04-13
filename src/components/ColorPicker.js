@@ -17,7 +17,7 @@ function OpenColorPicker({ color, onPick }) {
   return (
     <div
       sx={{
-        bg: "light",
+        bg: "background",
         display: "inline-grid",
         p: 1,
         gridTemplateColumns: "1fr 1fr 1fr",
@@ -32,7 +32,7 @@ function OpenColorPicker({ color, onPick }) {
           key={c}
           type="color"
           color={c}
-          sx={{ m: 1, borderColor: c === color ? "dark" : "auto" }}
+          sx={{ m: 1, borderColor: c === color ? "text" : "auto" }}
           onClick={() => onPick && onPick(c)}
         />
       ))}
@@ -62,7 +62,7 @@ export default function ColorPicker({ color, onPick }) {
       <Button
         type="color"
         color={color}
-        sx={{ borderColor: open ? "dark" : "auto" }}
+        sx={{ borderColor: open ? "text" : "auto" }}
         onClick={toggle}
       />
     </span>

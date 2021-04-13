@@ -24,7 +24,7 @@ const Toolbar = ({ title, setTitle, color, setColor, timers, saveTimer }) => {
           "&:hover": {
             borderColor: `accent.hover.${color}`,
           },
-          "&:active": { borderColor: "dark" },
+          "&:active": { borderColor: "text" },
         }}
         placeholder="Timer"
         value={title}
