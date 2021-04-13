@@ -9,15 +9,14 @@ import DragTimer from "../components/DragTimer";
 import Controls from "../components/Controls";
 import TimerList from "../components/TimerList";
 import { TimerProvider } from "../hooks/useTimer";
-import useAlarm from "../hooks/useAlarm";
 
 export default function TimerPage() {
   const [, setColorMode] = useColorMode();
-  const play = useAlarm();
+
   useEffect(() => {
     setColorMode("dark");
-    play();
-  }, [setColorMode, play]);
+  }, [setColorMode]);
+
   return (
     <TimerProvider>
       <Toolbar />
