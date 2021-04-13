@@ -1,7 +1,7 @@
 import { range } from "../core/utils";
 
 const BEEP_PER_PULSE = 2;
-const BEEP_INTERVAL = 250;
+const BEEP_INTERVAL = 225;
 const PULSE_INTERVAL = 1000;
 
 function playBeep() {

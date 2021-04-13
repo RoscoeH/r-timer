@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
-export default function useCountdown(initialSeconds) {
+export default function useCountdown(initialSeconds, onComplete) {
   const milisecond = useRef(initialSeconds * 1000);
   const previous = useRef(milisecond);
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -21,6 +21,8 @@ export default function useCountdown(initialSeconds) {
       if (milisecond.current <= 0) {
         setSeconds(0);
         cancelAnimationFrame(handle);
+        console.log("call on Complete");
+        onComplete && onComplete();
       } else {
         const seconds = Math.floor(milisecond.current / 1000);
         const isUpdate = seconds !== Math.floor(previous.current / 1000);
