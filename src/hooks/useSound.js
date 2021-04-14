@@ -1,32 +1,43 @@
-import { range } from "../core/utils";
-
-const BEEP_PER_PULSE = 2;
-const BEEP_INTERVAL = 225;
-const PULSE_INTERVAL = 1000;
+import { range, vibrate } from "../core/utils";
+import {
+  BEEP_PER_PULSE,
+  PULSE_INTERVAL,
+  ALARM_PULSES,
+} from "../core/constants";
 
 function clack() {
   const clack = new Audio("clack.ogg");
   clack.play();
 }
 
-function playBeep() {
-  const beep = new Audio("beep.wav");
-  beep.play();
+function playSound(audio, times) {
+  if (times <= 0) return;
+
+  let playCount = 0;
+
+  audio.addEventListener("ended", () => {
+    playCount++;
+    if (playCount < times) {
+      audio.play();
+      vibrate();
+    }
+  });
+  audio.play();
+  vibrate();
 }
 
-function playBeeps(number, interval) {
-  range(number).forEach((i) => setTimeout(playBeep, i * interval));
-}
-
-function alarm() {
-  range(3).forEach((i) =>
-    setTimeout(
-      () => playBeeps(BEEP_PER_PULSE, BEEP_INTERVAL),
-      i * PULSE_INTERVAL
-    )
-  );
-}
+const beep = new Audio("beep.wav");
 
 export default function useSound() {
+  const alarm = () => {
+    range(ALARM_PULSES).forEach((i) => {
+      if (i === 0) {
+        playSound(beep, BEEP_PER_PULSE);
+      } else {
+        setTimeout(() => playSound(beep, BEEP_PER_PULSE), i * PULSE_INTERVAL);
+      }
+    });
+  };
+
   return { alarm, clack };
 }

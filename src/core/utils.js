@@ -1,3 +1,5 @@
+import { SUPPORTS_VIBRATE } from "./constants";
+
 export function range(n) {
   return [...Array(n).keys()];
 }
@@ -43,4 +45,10 @@ export function secondsToAngle(seconds) {
 
 export function angleToSeconds(angle) {
   return Math.round((angle / 360) * 3600);
+}
+
+export function vibrate() {
+  if (SUPPORTS_VIBRATE) {
+    navigator.vibrate([0, 200, 50]);
+  }
 }
