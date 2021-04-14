@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import { useDrag } from "react-dnd";
 
 import { snapValue, toAngle } from "../core/utils";
-import useSound from "./useAlarm";
 
 const DRAG_TYPE = "TIMER";
 const MAX_LAPS = 2;
@@ -14,8 +13,7 @@ const angleToQuadrant = (angle) => (angle ? Math.floor(angle / 90) : null);
 const clampAngle = (angle, min, max) => Math.max(Math.min(angle, max), min);
 const totalAngle = (angle, laps) => laps * 360 + angle;
 
-export default function useDragAngle(size, steps) {
-  const { clack } = useSound();
+export default function useDragAngle(size, { steps, onLap }) {
   const radius = size / 2;
   const [currentAngle, setCurrentAngle] = useState(null);
   const [previousQuadrant, setPreviousQuadrant] = useState(null);
@@ -68,11 +66,11 @@ export default function useDragAngle(size, steps) {
     ) {
       setLaps(laps + 1);
       setPreviousQuadrant(0);
-      clack();
+      onLap();
     } else if (laps > 0 && quadrant === 3 && previousQuadrant === 0) {
       setLaps(laps - 1);
       setPreviousQuadrant(3);
-      clack();
+      onLap();
     }
   }, [
     currentAngle,
@@ -80,7 +78,7 @@ export default function useDragAngle(size, steps) {
     setPreviousQuadrant,
     laps,
     setLaps,
-    clack,
+    onLap,
   ]);
 
   useEffect(() => {

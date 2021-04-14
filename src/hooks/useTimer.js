@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 import { useCallback } from "react";
 import { createLocalStorageStateHook } from "use-local-storage-state";
 
-import useSound from "./useAlarm";
+import useSound from "./useSound";
 import useCountdown from "./useCountdown";
 
 const toId = (title) => title.trim().toLowerCase();
