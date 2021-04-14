@@ -43,7 +43,7 @@ export default function useCountdown(initialSeconds, onComplete) {
     return () => {
       cancelAnimationFrame(handle);
     };
-  }, [running]);
+  }, [running, onComplete]);
 
   useEffect(() => {
     if (!running && initialSeconds !== seconds) {
