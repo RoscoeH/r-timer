@@ -12,7 +12,7 @@ const Toolbar = ({ title, setTitle, color, setColor, timers, saveTimer }) => {
   return (
     <span
       sx={{
-        p: 1,
+        py: 1,
         display: "flex",
       }}
     >

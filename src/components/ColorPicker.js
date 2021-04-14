@@ -8,7 +8,7 @@ import Button from "./Button";
 
 const MODAL_OFFSET = {
   x: -50,
-  y: 40,
+  y: 46,
 };
 
 function OpenColorPicker({ color, onPick }) {

@@ -11,7 +11,7 @@ export default function AppBar({ title = "AppBar", onHelp, onSettings }) {
         justifyContent: "space-between",
         alignItems: "center",
         py: 2,
-        px: 1,
+        pr: 3,
         pl: 3,
         borderBottom: "default",
       }}
