@@ -30,7 +30,18 @@ const ICONS = {
   more,
 };
 
+const SIZES = {
+  help: 20,
+};
+
 export default function Icon({ icon = "menu", size = 24, inline, ...props }) {
   const Component = inline ? InlineIcon : IconComponent;
-  return <Component icon={ICONS[icon]} width={size} height={size} {...props} />;
+  return (
+    <Component
+      icon={ICONS[icon]}
+      width={SIZES[icon] || size}
+      height={SIZES[icon] || size}
+      {...props}
+    />
+  );
 }
