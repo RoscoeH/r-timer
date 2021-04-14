@@ -11,6 +11,7 @@ export default {
   title: "Pages/Timer",
   component: Timer,
   parameters: {
+    layout: "fullscreen",
     viewport: {
       viewports: INITIAL_VIEWPORTS,
       defaultViewport: "iphone5",

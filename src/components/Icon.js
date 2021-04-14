@@ -13,6 +13,7 @@ import plus from "@iconify/icons-mdi-light/plus";
 import help from "@iconify/icons-mdi-light/help";
 import chevronDown from "@iconify/icons-mdi-light/chevron-down";
 import chevronUp from "@iconify/icons-mdi-light/chevron-up";
+import more from "@iconify/icons-mdi-light/dots-vertical";
 
 const ICONS = {
   menu,
@@ -26,6 +27,7 @@ const ICONS = {
   help,
   chevronUp,
   chevronDown,
+  more,
 };
 
 export default function Icon({ icon = "menu", size = 24, inline, ...props }) {

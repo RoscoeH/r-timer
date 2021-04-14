@@ -70,6 +70,7 @@ export default {
       dark: {
         text: "#fff",
         background: "#333",
+        hover: "rgba(255,255,255,0.05)",
       },
     },
   },
@@ -82,7 +83,8 @@ export default {
       fontWeight: 300,
     },
     h1: {
-      fontSize: 3,
+      fontSize: 1,
+      m: 0,
     },
     h2: {
       fontSize: 2,
@@ -116,7 +118,6 @@ export default {
     },
     icon: {
       outline: "none",
-      bg: "background",
       color: "text",
       border: "default",
       borderColor: "accent.green",

@@ -31,8 +31,11 @@ const CONTENT = {
 
 const STYLES = {
   icon: (color) => ({
-    borderColor: accent(color),
-    "&:hover": { borderColor: hover(color) },
+    borderColor: color ? accent(color) : "transparent",
+    "&:hover": color
+      ? { borderColor: hover(color) }
+      : { bg: "hover", borderColor: "transparent" },
+    "&:active": { borderColor: "text" },
   }),
   color: (color) => ({
     bg: accent(color),

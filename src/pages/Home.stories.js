@@ -7,6 +7,7 @@ export default {
   title: "Pages/Home",
   component: Home,
   parameters: {
+    layout: "fullscreen",
     viewport: {
       viewports: INITIAL_VIEWPORTS,
       defaultViewport: "iphone5",

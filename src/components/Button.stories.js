@@ -10,7 +10,7 @@ export default {
 const Template = (args) => <Button {...args} />;
 
 export const Icon = Template.bind({});
-Icon.args = { type: "icon", icon: "check" };
+Icon.args = { type: "icon", icon: "check", color: "green" };
 
 export const Primary = Template.bind({});
 Primary.args = { type: "primary", children: "Start" };
