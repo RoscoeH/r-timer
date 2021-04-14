@@ -14,7 +14,7 @@ export default function Scaffold({ children }) {
           setColorMode(colorMode === "default" ? "dark" : "default")
         }
       />
-      <div sx={{ px: 2 }}>{children}</div>
+      <div sx={{ px: 3 }}>{children}</div>
     </div>
   );
 }
