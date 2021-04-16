@@ -8,11 +8,13 @@ export default function TimerListItem({
   title = "Title",
   color = "green",
   seconds = 360,
+  selected,
   onClick,
 }) {
   return (
     <div
       sx={{
+        bg: selected ? "hover" : "transparent",
         display: "flex",
         alignItems: "center",
         border: "default",
@@ -20,6 +22,7 @@ export default function TimerListItem({
         borderRadius: 4,
         userSelect: "none",
         cursor: "pointer",
+        mb: 2,
         p: 3,
         "& > *": {
           m: 2,

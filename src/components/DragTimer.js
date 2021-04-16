@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { useEffect } from "react";
+import useDimensions from "react-use-dimensions";
 import composeHooks from "react-hooks-compose";
 
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
@@ -21,13 +22,15 @@ const DragTimer = ({
   running,
   snap = true,
 }) => {
+  const [dimensionsRef, { width }] = useDimensions();
   const { clack } = useSound();
+
   const [
     angle,
     reset,
-    drag,
+    dragRef,
     { laps, quadrant, prevQuadrant, currentAngle },
-  ] = useDragAngle(size, { steps: 120, onLap: clack });
+  ] = useDragAngle(width, { steps: 120, onLap: clack });
 
   useEffect(() => {
     const newSeconds = angleToSeconds(angle);
@@ -43,10 +46,18 @@ const DragTimer = ({
   }, [angle, seconds, reset]);
 
   return (
-    <div sx={{ textAlign: "center" }}>
-      <div ref={running ? null : drag}>
+    <div
+      ref={dimensionsRef}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "stretch",
+        flex: "1 1 auto",
+      }}
+    >
+      <div ref={running ? null : dragRef} sx={{ width: "100%", maxWidth: 10 }}>
         <Timer
-          size={size}
+          size={width}
           color={color}
           angle={angle || secondsToAngle(seconds)}
           snap={snap}

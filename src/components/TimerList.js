@@ -19,20 +19,31 @@ function TimerList({ timers, setTimer, color }) {
   const timersButton = () => (
     <TimersButton isOpen={isOpen} onClick={toggleOpen} color={color} />
   );
+
+  const selected = "work";
+
+  const timerList = (timers, selected) =>
+    timers.map(({ id, title, color, seconds }, i) => (
+      <TimerListItem
+        key={i}
+        title={title}
+        color={color}
+        seconds={seconds}
+        onClick={handleItemClick(title)}
+        selected={id === selected}
+      />
+    ));
   return (
     <div>
       {!isOpen && timersButton()}
-      <BottomSheet header={timersButton} isOpen={isOpen} onClose={toggleOpen}>
-        {timers.map(({ title, color, seconds }, i) => (
-          <TimerListItem
-            key={i}
-            title={title}
-            color={color}
-            seconds={seconds}
-            onClick={handleItemClick(title)}
-          />
-        ))}
-      </BottomSheet>
+      <div sx={{ display: ["block", "none"] }}>
+        <BottomSheet header={timersButton} isOpen={isOpen} onClose={toggleOpen}>
+          {timerList}
+        </BottomSheet>
+      </div>
+      <div sx={{ display: ["none", "block"], pt: 3, pr: 3 }}>
+        {timerList(timers, selected)}
+      </div>
     </div>
   );
 }

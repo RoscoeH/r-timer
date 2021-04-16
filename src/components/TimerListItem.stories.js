@@ -11,6 +11,14 @@ const Template = (args) => <TimerListItem {...args} />;
 export const Work = Template.bind({});
 Work.args = { title: "Work", color: "green", seconds: 25 * 60 };
 
+export const Selected = Template.bind({});
+Selected.args = {
+  title: "Selected",
+  color: "green",
+  seconds: 25 * 60,
+  selected: true,
+};
+
 export const ShortBreak = Template.bind({});
 ShortBreak.args = { title: "Short break", color: "blue", seconds: 5 * 60 };
 
