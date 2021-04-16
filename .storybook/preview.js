@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@theme-ui/theme-provider";
+import { ThemeProvider } from "theme-ui";
 
 import theme from "../src/core/theme";
 import { TimerProvider } from "../src/hooks/useTimer";
