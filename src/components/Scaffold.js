@@ -2,10 +2,12 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from "theme-ui";
 
+import useAspectRatio from "../hooks/useAspectRatio";
 import AppBar from "./AppBar";
 
 export default function Scaffold({ children }) {
   const [colorMode, setColorMode] = useColorMode();
+  const aspectRatio = useAspectRatio();
   return (
     <div
       sx={{
@@ -15,7 +17,15 @@ export default function Scaffold({ children }) {
         alignItems: "center",
       }}
     >
-      <div sx={{ height: "100%", width: "100%", maxWidth: 12 }}>
+      <div
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          width: "100%",
+          maxWidth: 13,
+        }}
+      >
         <AppBar
           title="Timerly"
           onHelp={() =>
@@ -25,9 +35,9 @@ export default function Scaffold({ children }) {
         <div
           sx={{
             display: "flex",
-            flexDirection: ["column", "row"],
+            flexDirection: aspectRatio < 1 ? "column" : "row",
             justifyContent: "center",
-            alignItems: ["center", "stretch"],
+            alignItems: aspectRatio < 1 ? "center" : "stretch",
             flex: "1 1 auto",
             px: 3,
           }}

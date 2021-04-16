@@ -1,15 +1,19 @@
 import React, { useState, createContext, useContext } from "react";
 import { useCallback } from "react";
 import { createLocalStorageStateHook } from "use-local-storage-state";
-
+import UrlSafeString from "url-safe-string";
 import useSound from "./useSound";
 import useCountdown from "./useCountdown";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+
+const tagGenerator = new UrlSafeString();
 
 const toId = (title) => title.trim().toLowerCase();
 const mapToId = ({ title, ...timer }) => ({
   ...timer,
   title,
-  id: toId(title),
+  id: tagGenerator.generate(title),
 });
 
 const initialTimers = [
@@ -39,6 +43,7 @@ const TimerContext = createContext();
 const useStorage = createLocalStorageStateHook("timers", initialTimers);
 
 export function TimerProvider({ children }) {
+  const { id } = useParams();
   const { alarm } = useSound();
   const [timers, setTimers] = useStorage();
   const [title, setTitle] = useState(initialState.title);
@@ -64,7 +69,7 @@ export function TimerProvider({ children }) {
       setTimers([
         ...timers,
         {
-          id: toId(title),
+          id: tagGenerator.generate(title),
           title,
           color,
           seconds,
@@ -73,18 +78,15 @@ export function TimerProvider({ children }) {
     }
   }, [timers, title, color, seconds, setTimers]);
 
-  const setTimer = useCallback(
-    (timerTitle) => {
-      const timer = timers.find((t) => t.title === timerTitle);
-      if (timer) {
-        stop();
-        setTitle(timer.title);
-        setColor(timer.color);
-        setSeconds(timer.seconds);
-      }
-    },
-    [timers, stop, setTitle, setColor, setSeconds]
-  );
+  useEffect(() => {
+    const timer = timers.find((t) => t.id === id);
+    if (timer) {
+      stop();
+      setTitle(timer.title);
+      setColor(timer.color);
+      setSeconds(timer.seconds);
+    }
+  }, [id, timers, stop, setTitle, setColor, setSeconds]);
 
   const value = {
     title,
@@ -98,7 +100,6 @@ export function TimerProvider({ children }) {
     stop,
     timers,
     saveTimer,
-    setTimer,
   };
 
   return (

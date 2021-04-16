@@ -13,7 +13,7 @@ function App() {
       <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
         <Router>
           <Switch>
-            <Route path="/timer">
+            <Route path="/timer/:id">
               <Timer />
             </Route>
             <Route path="/">

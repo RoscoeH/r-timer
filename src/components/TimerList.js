@@ -2,18 +2,22 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import composeHooks from "react-hooks-compose";
-
 import useTimer from "../hooks/useTimer";
+import useAspectRatio from "../hooks/useAspectRatio";
 import TimerListItem from "./TimerListItem";
 import BottomSheet from "./BottomSheet";
 import TimersButton from "./TimersButton";
 
-function TimerList({ timers, setTimer, color }) {
+function TimerList({ timers, color }) {
+  const aspectRatio = useAspectRatio();
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
-  const handleItemClick = (timerTitle) => () => {
-    setTimer(timerTitle);
+  const handleItemClick = (id) => () => {
+    console.log(history);
+    history.push(id);
     toggleOpen();
   };
   const timersButton = () => (
@@ -29,23 +33,34 @@ function TimerList({ timers, setTimer, color }) {
         title={title}
         color={color}
         seconds={seconds}
-        onClick={handleItemClick(title)}
+        onClick={handleItemClick(id)}
         selected={id === selected}
       />
     ));
   return (
-    <div>
-      {!isOpen && timersButton()}
-      <div sx={{ display: ["block", "none"] }}>
-        <BottomSheet header={timersButton} isOpen={isOpen} onClose={toggleOpen}>
-          {timerList}
-        </BottomSheet>
-      </div>
-      <div sx={{ display: ["none", "block"], pt: 3, pr: 3 }}>
-        {timerList(timers, selected)}
-      </div>
+    <div
+      sx={{
+        order: aspectRatio < 1 ? 0 : -1,
+        flex: aspectRatio < 1 ? "auto" : 1,
+      }}
+    >
+      {aspectRatio < 1 && (
+        <div>
+          {!isOpen && timersButton()}
+          <BottomSheet
+            header={timersButton}
+            isOpen={isOpen}
+            onClose={toggleOpen}
+          >
+            {timerList}
+          </BottomSheet>
+        </div>
+      )}
+      {aspectRatio > 1 && (
+        <div sx={{ pt: 3, pr: 3 }}>{timerList(timers, selected)}</div>
+      )}
     </div>
   );
 }
 
-export default composeHooks({ useTimer })(TimerList);
+export default composeHooks({ useTimer, useHistory })(TimerList);

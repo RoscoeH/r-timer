@@ -8,7 +8,7 @@ export default function TimersButton({ color, isOpen, onClick }) {
   return (
     <div
       sx={{
-        display: ["flex", "none"],
+        display: "flex",
         flexDirection: "column",
         alignItems: "center",
         fontSize: 0,
@@ -20,11 +20,7 @@ export default function TimersButton({ color, isOpen, onClick }) {
       }}
       onClick={onClick}
     >
-      <Icon
-        icon="chevronUp"
-        // size={32}
-        rotate={isOpen ? 2 : 0}
-      />
+      <Icon icon="chevronUp" rotate={isOpen ? 2 : 0} />
       TIMERS
     </div>
   );
