@@ -76,9 +76,12 @@ export function TimerProvider({ id, children }) {
     }
   }, [timers, title, color, seconds, setTimers]);
 
-  const deleteTimer = useCallback((id) => {
-    setTimers(timers.filter((t) => t.id !== id));
-  });
+  const deleteTimer = useCallback(
+    (id) => {
+      setTimers(timers.filter((t) => t.id !== id));
+    },
+    [timers, setTimers]
+  );
 
   useEffect(() => {
     const timer = timers.find((t) => t.id === id);
