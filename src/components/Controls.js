@@ -19,7 +19,7 @@ export default function Controls() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        py: 3,
+        py: 2,
         opacity: visible ? 1 : 0,
       }}
     >

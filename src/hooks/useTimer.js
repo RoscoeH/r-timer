@@ -42,8 +42,7 @@ const initialState = {
 const TimerContext = createContext();
 const useStorage = createLocalStorageStateHook("timers", initialTimers);
 
-export function TimerProvider({ children }) {
-  const { id } = useParams();
+export function TimerProvider({ id, children }) {
   const { alarm } = useSound();
   const [timers, setTimers] = useStorage();
   const [title, setTitle] = useState(initialState.title);

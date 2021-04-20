@@ -42,6 +42,7 @@ function TimerList({ timers, color }) {
       sx={{
         order: aspectRatio < 1 ? 0 : -1,
         flex: aspectRatio < 1 ? 0 : 1,
+        width: "100%",
       }}
     >
       {aspectRatio < 1 && (

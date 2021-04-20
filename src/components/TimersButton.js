@@ -13,10 +13,8 @@ export default function TimersButton({ color, isOpen, onClick }) {
         alignItems: "center",
         fontSize: 0,
         textAlign: "center",
-        p: 2,
         userSelect: "none",
         cursor: "pointer",
-        mb: isOpen ? 0 : 3,
       }}
       onClick={onClick}
     >

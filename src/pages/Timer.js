@@ -13,9 +13,9 @@ import { TimerProvider } from "../hooks/useTimer";
 import { AspectRatioProvider } from "../hooks/useAspectRatio";
 import Scaffold from "../components/Scaffold";
 
-export default function TimerPage() {
+export default function TimerPage({ id }) {
   return (
-    <TimerProvider>
+    <TimerProvider id={id}>
       <AspectRatioProvider>
         <Scaffold>
           <div
