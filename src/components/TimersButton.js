@@ -15,6 +15,7 @@ export default function TimersButton({ color, isOpen, onClick }) {
         textAlign: "center",
         userSelect: "none",
         cursor: "pointer",
+        py: 2,
       }}
       onClick={onClick}
     >
