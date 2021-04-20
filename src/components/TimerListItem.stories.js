@@ -4,6 +4,10 @@ import TimerListItem from "../components/TimerListItem";
 export default {
   title: "Components/TimerListItem",
   component: TimerListItem,
+  argTypes: {
+    onClick: { action: true },
+    onDelete: { action: true },
+  },
 };
 
 const Template = (args) => <TimerListItem {...args} />;

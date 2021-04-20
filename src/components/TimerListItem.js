@@ -3,6 +3,7 @@
 import { jsx } from "theme-ui";
 
 import { toTime } from "../core/utils";
+import Button from "./Button";
 
 export default function TimerListItem({
   title = "Title",
@@ -10,7 +11,13 @@ export default function TimerListItem({
   seconds = 360,
   selected,
   onClick,
+  onDelete,
 }) {
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    onDelete && onDelete();
+  };
+  const handleClick = () => onClick && onClick();
   return (
     <div
       sx={{
@@ -23,7 +30,7 @@ export default function TimerListItem({
         userSelect: "none",
         cursor: "pointer",
         mb: 2,
-        p: 3,
+        p: 2,
         "& > *": {
           m: 2,
         },
@@ -34,13 +41,16 @@ export default function TimerListItem({
           borderColor: "text",
         },
       }}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div
         sx={{ width: 3, height: 3, bg: `accent.${color}`, borderRadius: 7 }}
       />
       <div sx={{ flexGrow: 1 }}>{title}</div>
       <div>{toTime(seconds)}</div>
+      <div>
+        <Button type="icon" icon="close" onClick={handleDelete} />
+      </div>
     </div>
   );
 }

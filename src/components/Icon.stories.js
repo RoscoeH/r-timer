@@ -41,6 +41,9 @@ ChevronUp.args = { icon: "chevronUp" };
 export const ChevronDown = Template.bind({});
 ChevronDown.args = { icon: "chevronDown" };
 
+export const Close = Template.bind({});
+Close.args = { icon: "close" };
+
 export const Small = Template.bind({});
 Small.args = { size: 8 };
 

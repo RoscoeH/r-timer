@@ -28,10 +28,15 @@ const ICONS = {
   chevronUp,
   chevronDown,
   more,
+  close: plus,
 };
 
 const SIZES = {
   help: 20,
+};
+
+const ROTATIONS = {
+  close: "45deg",
 };
 
 export default function Icon({ icon = "menu", size = 24, inline, ...props }) {
@@ -42,6 +47,7 @@ export default function Icon({ icon = "menu", size = 24, inline, ...props }) {
       width={SIZES[icon] || size}
       height={SIZES[icon] || size}
       {...props}
+      style={{ transform: `rotate(${ROTATIONS[icon]})` }}
     />
   );
 }

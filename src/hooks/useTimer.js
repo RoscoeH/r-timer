@@ -76,6 +76,10 @@ export function TimerProvider({ id, children }) {
     }
   }, [timers, title, color, seconds, setTimers]);
 
+  const deleteTimer = useCallback((id) => {
+    setTimers(timers.filter((t) => t.id !== id));
+  });
+
   useEffect(() => {
     const timer = timers.find((t) => t.id === id);
     if (timer) {
@@ -98,6 +102,7 @@ export function TimerProvider({ id, children }) {
     stop,
     timers,
     saveTimer,
+    deleteTimer,
   };
 
   return (

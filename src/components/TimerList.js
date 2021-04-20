@@ -4,13 +4,14 @@ import { jsx } from "theme-ui";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import composeHooks from "react-hooks-compose";
+
 import useTimer from "../hooks/useTimer";
 import useAspectRatio from "../hooks/useAspectRatio";
 import TimerListItem from "./TimerListItem";
 import BottomSheet from "./BottomSheet";
 import TimersButton from "./TimersButton";
 
-function TimerList({ timers, color }) {
+function TimerList({ color, timers, deleteTimer }) {
   const aspectRatio = useAspectRatio();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,8 @@ function TimerList({ timers, color }) {
     history.push(id);
     toggleOpen();
   };
+  const handleItemDelete = (id) => () => deleteTimer(id);
+
   const timersButton = () => (
     <TimersButton isOpen={isOpen} onClick={toggleOpen} color={color} />
   );
@@ -32,8 +35,9 @@ function TimerList({ timers, color }) {
         title={title}
         color={color}
         seconds={seconds}
-        onClick={handleItemClick(id)}
         selected={id === selected}
+        onClick={handleItemClick(id)}
+        onDelete={handleItemDelete(id)}
       />
     ));
   return (
