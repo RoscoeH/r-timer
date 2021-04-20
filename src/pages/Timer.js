@@ -22,9 +22,10 @@ export default function TimerPage() {
             sx={{
               display: "flex",
               flexDirection: "column",
-              flex: ["auto", 2],
-              width: ["100%"],
+              flex: 2,
+              width: "100%",
               height: "100%",
+              maxWidth: [9, 10],
             }}
           >
             <Toolbar />

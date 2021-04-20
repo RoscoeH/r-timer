@@ -55,7 +55,16 @@ const DragTimer = ({
         flex: "1 1 auto",
       }}
     >
-      <div ref={running ? null : dragRef} sx={{ width: "100%", maxWidth: 8 }}>
+      <div
+        ref={running ? null : dragRef}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          flex: 1,
+          maxWidth: 9,
+        }}
+      >
         <Timer
           size={width}
           color={color}
