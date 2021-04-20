@@ -33,7 +33,7 @@ const initialTimers = [
   },
 ].map(mapToId);
 const initialState = {
-  title: null,
+  title: "",
   color: "green",
   seconds: 10 * 60,
 };
