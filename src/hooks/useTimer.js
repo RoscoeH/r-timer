@@ -5,7 +5,6 @@ import UrlSafeString from "url-safe-string";
 import useSound from "./useSound";
 import useCountdown from "./useCountdown";
 import { useEffect } from "react";
-import { useParams } from "react-router";
 
 const tagGenerator = new UrlSafeString();
 

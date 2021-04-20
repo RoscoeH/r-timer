@@ -16,7 +16,6 @@ function TimerList({ timers, color }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
   const handleItemClick = (id) => () => {
-    console.log(history);
     history.push(id);
     toggleOpen();
   };

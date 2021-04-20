@@ -21,7 +21,6 @@ export default function useCountdown(initialSeconds, onComplete) {
       if (milisecond.current <= 0) {
         setSeconds(0);
         cancelAnimationFrame(handle);
-        console.log("call on Complete");
         onComplete && onComplete();
       } else {
         const seconds = Math.floor(milisecond.current / 1000);
