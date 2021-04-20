@@ -5,8 +5,6 @@ import { TouchBackend } from "react-dnd-touch-backend";
 
 import Timer from "./Timer";
 
-console.log(INITIAL_VIEWPORTS);
-
 export default {
   title: "Pages/Timer",
   component: Timer,
