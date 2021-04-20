@@ -52,7 +52,7 @@ function TimerList({ timers, color }) {
             isOpen={isOpen}
             onClose={toggleOpen}
           >
-            {timerList}
+            {timerList(timers, selected)}
           </BottomSheet>
         </div>
       )}

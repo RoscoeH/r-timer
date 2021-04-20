@@ -13,7 +13,6 @@ export default function BottomSheet({ header, children, isOpen, onClose }) {
           <div sx={{ px: 3 }}>{children}</div>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onClick={onClose} />
     </Sheet>
   );
 }
