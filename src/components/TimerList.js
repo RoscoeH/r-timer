@@ -47,7 +47,7 @@ function TimerList({ timers, color }) {
     >
       {aspectRatio < 1 && (
         <div>
-          {!isOpen && timersButton()}
+          {timersButton()}
           <BottomSheet
             header={timersButton}
             isOpen={isOpen}
