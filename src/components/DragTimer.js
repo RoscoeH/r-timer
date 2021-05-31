@@ -56,7 +56,6 @@ const DragTimer = ({
       }}
     >
       <div
-        ref={running ? null : dragRef}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -65,21 +64,23 @@ const DragTimer = ({
           maxWidth: 9,
         }}
       >
-        <Timer
-          size={width}
-          color={color}
-          angle={angle || secondsToAngle(seconds)}
-          snap={snap}
-        />
-        {DEBUG && (
-          <div>
-            <p>{`seconds: ${seconds}`}</p>
-            <p>{`currentAngle: ${currentAngle}`}</p>
-            <p>{`laps: ${laps}`}</p>
-            <p>{`prevQuadrant: ${prevQuadrant}`}</p>
-            <p>{`quadrant: ${quadrant}`}</p>
-          </div>
-        )}
+        <div id="dragref" ref={running ? null : dragRef}>
+          <Timer
+            size={width}
+            color={color}
+            angle={angle || secondsToAngle(seconds)}
+            snap={snap}
+          />
+          {DEBUG && (
+            <div>
+              <p>{`seconds: ${seconds}`}</p>
+              <p>{`currentAngle: ${currentAngle}`}</p>
+              <p>{`laps: ${laps}`}</p>
+              <p>{`prevQuadrant: ${prevQuadrant}`}</p>
+              <p>{`quadrant: ${quadrant}`}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
