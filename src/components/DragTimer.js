@@ -8,8 +8,8 @@ import composeHooks from "react-hooks-compose";
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import { angleToSeconds, secondsToAngle } from "../core/utils";
 import useTimer from "../hooks/useTimer";
-import useSound from "../hooks/useSound";
-import useDragAngle from "../hooks/useDragAngle";
+// import useSound from "../hooks/useSound";
+import useDragAngle from "../hooks/useDragAngle.bak";
 import Timer from "./Timer";
 
 const DEBUG = false;
@@ -23,14 +23,14 @@ const DragTimer = ({
   snap = true,
 }) => {
   const [dimensionsRef, { width }] = useDimensions();
-  const { clack } = useSound();
+  // const { clack } = useSound();
 
   const [
     angle,
     reset,
     dragRef,
     { laps, quadrant, prevQuadrant, currentAngle },
-  ] = useDragAngle(width, { steps: 120, onLap: clack });
+  ] = useDragAngle(width, { steps: 120 });
 
   useEffect(() => {
     const newSeconds = angleToSeconds(angle);

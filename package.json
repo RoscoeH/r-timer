@@ -19,7 +19,7 @@
     "react-scripts": "4.0.3",
     "react-timer-hook": "^2.0.7",
     "react-use-dimensions": "^1.2.1",
-    "theme-ui": "0.3.5",
+    "theme-ui": "^0.9.1",
     "typeface-open-sans": "^1.1.13",
     "url-safe-string": "^1.1.0",
     "use-local-storage-state": "^9.0.2",
