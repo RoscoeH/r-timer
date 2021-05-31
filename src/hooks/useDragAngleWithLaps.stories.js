@@ -2,10 +2,10 @@
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
 
-import useDragAngle from "./useDragAngle";
+import useDragAngleWithLaps from "./useDragAngleWithLaps";
 
 export default {
-  title: "Hooks/useDragAngle",
+  title: "Hooks/useDragAngleWithLaps",
   decorators: [
     (Story) => (
       <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
@@ -18,12 +18,11 @@ export default {
 const SIZE = 300;
 
 const TestDragAngle = ({ steps }) => {
-  const [angle, ref] = useDragAngle(steps);
+  const [{ angle, laps }, ref] = useDragAngleWithLaps(steps);
   return (
     <div>
-      <p>
-        {angle === null ? "Drag inside the box" : `Angle from centre: ${angle}`}
-      </p>
+      <p>{`Angle from centre: ${angle}`}</p>
+      <p>{`Laps: ${laps}`}</p>
       <div
         ref={ref}
         sx={{
