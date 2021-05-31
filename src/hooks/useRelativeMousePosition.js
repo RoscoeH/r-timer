@@ -11,7 +11,6 @@ export default function useRelativeMousePosition() {
   });
 
   useEffect(() => {
-    console.log(ref.current);
     const { left, top } = ref.current.getBoundingClientRect();
     setRelativePosition({
       x: x - left,
