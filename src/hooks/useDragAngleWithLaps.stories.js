@@ -17,8 +17,8 @@ export default {
 
 const SIZE = 300;
 
-const TestDragAngle = ({ steps }) => {
-  const [{ angle, laps }, ref] = useDragAngleWithLaps(steps);
+const TestDragAngle = ({ steps, maxLaps }) => {
+  const [{ angle, laps }, ref] = useDragAngleWithLaps(steps, maxLaps);
   return (
     <div>
       <p>{`Angle from centre: ${angle}`}</p>
@@ -50,3 +50,6 @@ With120Steps.args = { steps: 120 };
 
 export const With12Steps = Template.bind({});
 With12Steps.args = { steps: 12 };
+
+export const Max3Laps = Template.bind({});
+Max3Laps.args = { maxLaps: 3 };

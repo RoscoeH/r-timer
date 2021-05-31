@@ -16,7 +16,7 @@ export default {
   ],
 };
 
-const Template = (args) => <DragTimer {...args} />;
+const Template = (args) => <DragTimer {...args} debug />;
 
 export const Default = Template.bind({});
 Default.args = { snap: true };
