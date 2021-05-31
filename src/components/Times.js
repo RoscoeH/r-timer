@@ -7,9 +7,10 @@ import { toTime, toFinishTime } from "../core/utils";
 import useTimer from "../hooks/useTimer";
 import TimeDisplay from "./TimeDisplay";
 
-const Times = ({ seconds }) => {
-  const remainingTime = toTime(seconds);
-  const finishTime = toFinishTime(seconds);
+const Times = ({ seconds, duration, isRunning }) => {
+  const effectiveSeconds = isRunning ? seconds : duration;
+  const remainingTime = toTime(effectiveSeconds);
+  const finishTime = toFinishTime(effectiveSeconds);
   const visible = seconds !== null;
 
   return (

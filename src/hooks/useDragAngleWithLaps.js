@@ -24,14 +24,14 @@ export default function useDragAngleWithLaps(steps, maxLaps) {
 
   // Set laps
   useEffect(() => {
-    console.log(
-      "p",
-      angleToQuadrant(previousAngle),
-      "q",
-      angleToQuadrant(angle),
-      "l",
-      laps
-    );
+    // console.log(
+    //   "p",
+    //   angleToQuadrant(previousAngle),
+    //   "q",
+    //   angleToQuadrant(angle),
+    //   "l",
+    //   laps
+    // );
     const previousQuad = angleToQuadrant(previousAngle);
     const quad = angleToQuadrant(angle);
 

@@ -47,6 +47,7 @@ export function TimerProvider({ id, children }) {
   const [title, setTitle] = useState(initialState.title);
   const [color, setColor] = useState(initialState.color);
   const [seconds, setSeconds] = useState(initialState.seconds);
+  const [duration, setDuration] = useState(null);
 
   const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
     seconds,
@@ -100,6 +101,8 @@ export function TimerProvider({ id, children }) {
     setColor,
     seconds: running ? remaining : seconds,
     setSeconds,
+    duration,
+    setDuration,
     running,
     start,
     stop,
