@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { snapValue, toAngle } from "../core/utils";
 
 import useRelativeMousePosition from "./useRelativeMousePosition";
@@ -14,7 +14,7 @@ function calculateAngle(x, y, steps) {
   return steps ? Math.round(angle) : angle;
 }
 
-export default function useDragAngle(steps) {
+export default function useDragAngle(steps, onEnd) {
   const [
     { x: relativeX, y: relativeY },
     positionRef,
@@ -22,20 +22,29 @@ export default function useDragAngle(steps) {
   const [isDragging, setIsDragging] = useState(false);
   const [angle, setAngle] = useState();
 
+  // onEnd callback
+  const handleEnd = useCallback(() => onEnd && onEnd(angle), [angle, onEnd]);
+
   // Set drag handler
   useEffect(() => {
-    const setDraggingTrue = () => setIsDragging(true);
-    const setDraggingFalse = () => setIsDragging(false);
+    const onMouseDown = () => setIsDragging(true);
+    const onMouseUp = () => {
+      if (isDragging) {
+        setIsDragging(false);
+        console.log("handleEnd");
+        handleEnd();
+      }
+    };
     const node = positionRef.current;
 
-    node.addEventListener("mousedown", setDraggingTrue);
-    window.addEventListener("mouseup", setDraggingFalse);
+    node.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
 
     return () => {
-      node.removeEventListener("mousedown", setDraggingTrue);
-      window.removeEventListener("mousedown", setDraggingFalse);
+      node.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
     };
-  }, [positionRef]);
+  }, [positionRef, isDragging, handleEnd]);
 
   // Calculate angle
   useEffect(() => {

@@ -6,8 +6,8 @@ import useDragAngle from "./useDragAngle";
 const angleToQuadrant = (angle) =>
   angle !== null ? Math.floor(angle / 90) : null;
 
-export default function useDragAngleWithLaps(steps, maxLaps) {
-  const [angle, positionRef] = useDragAngle(steps);
+export default function useDragAngleWithLaps(steps, maxLaps, onEnd) {
+  const [angle, positionRef] = useDragAngle(steps, onEnd);
   const previousAngle = usePrevious(angle);
   const [laps, setLaps] = useState(null);
   const [totalAngle, setTotalAngle] = useState(laps * angle);
@@ -58,7 +58,9 @@ export default function useDragAngleWithLaps(steps, maxLaps) {
   useEffect(() => {
     let total = angle !== null && laps !== null ? 360 * laps + angle : null;
     total =
-      typeof maxLaps !== "undefined" ? Math.min(total, maxLaps * 360) : total;
+      typeof maxLaps !== "undefined" && angle !== null
+        ? Math.min(total, maxLaps * 360)
+        : total;
     setTotalAngle(total);
   }, [angle, laps, maxLaps]);
 
