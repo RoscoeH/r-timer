@@ -20,6 +20,7 @@ export default function useCountdown(initialSeconds, onComplete) {
 
       if (milisecond.current <= 0) {
         setSeconds(0);
+        setRunning(false);
         cancelAnimationFrame(handle);
         onComplete && onComplete();
       } else {

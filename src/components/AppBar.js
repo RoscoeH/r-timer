@@ -1,9 +1,32 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { useState } from "react";
 import { jsx, Styled } from "theme-ui";
-import Button from "./Button";
 
-export default function AppBar({ title = "AppBar", onHelp, onSettings }) {
+import SettingsMenu from "./SettingsMenu";
+import Button from "./Button";
+import Floater from "react-floater";
+
+function Overlay({ onClick }) {
+  return (
+    <div
+      sx={{
+        position: "fixed",
+        bg: "rgba(0, 0, 0, 0.05)",
+        bottom: 0,
+        left: 0,
+        top: 0,
+        right: 0,
+        zIndex: 100,
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+export default function AppBar({ title = "AppBar", onHelp }) {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const handleSettingsClick = () => setIsSettingsOpen(!isSettingsOpen);
   return (
     <div
       sx={{
@@ -18,7 +41,22 @@ export default function AppBar({ title = "AppBar", onHelp, onSettings }) {
     >
       <Styled.h1 sx={{ flex: "1 1 auto" }}>{title}</Styled.h1>
       {/* <Button type="icon" icon="help" onClick={onHelp} /> */}
-      <Button type="icon" icon="more" sx={{ m: 1 }} onClick={onSettings} />
+      <span className="settingsButton">
+        <Button
+          type="icon"
+          icon="more"
+          sx={{ m: 1 }}
+          onClick={handleSettingsClick}
+        />
+      </span>
+      <Floater
+        open={isSettingsOpen}
+        target=".settingsButton"
+        component={() => <SettingsMenu />}
+        styles={{ wrapper: { cursor: "pointer" } }}
+        hideArrow
+      ></Floater>
+      {isSettingsOpen && <Overlay onClick={handleSettingsClick} />}
     </div>
   );
 }

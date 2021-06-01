@@ -1,12 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, useColorMode } from "theme-ui";
+import { jsx } from "theme-ui";
 
 import useAspectRatio from "../hooks/useAspectRatio";
 import AppBar from "./AppBar";
 
 export default function Scaffold({ children }) {
-  const [colorMode, setColorMode] = useColorMode();
   const aspectRatio = useAspectRatio();
   return (
     <div
@@ -26,12 +25,7 @@ export default function Scaffold({ children }) {
           maxWidth: 13,
         }}
       >
-        <AppBar
-          title="rTimer"
-          onHelp={() =>
-            setColorMode(colorMode === "default" ? "dark" : "default")
-          }
-        />
+        <AppBar title="rTimer" />
         <div
           sx={{
             display: "flex",

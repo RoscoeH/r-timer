@@ -6,12 +6,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 
 export default function Controls() {
-  const { seconds, color, running, setSeconds, start, stop } = useTimer();
-
-  function cancel() {
-    stop();
-    setSeconds(null);
-  }
+  const { seconds, color, running, start, stop } = useTimer();
 
   const visible = seconds !== null;
   return (
@@ -28,7 +23,7 @@ export default function Controls() {
         icon="cancel"
         color={color}
         sx={{ flex: 1, mr: 2 }}
-        onClick={cancel}
+        onClick={stop}
       >
         Cancel
       </Button>

@@ -31,7 +31,6 @@ export default function useDragAngle(steps, onEnd) {
     const onMouseUp = () => {
       if (isDragging) {
         setIsDragging(false);
-        console.log("handleEnd");
         handleEnd();
       }
     };

@@ -67,7 +67,7 @@ export default function Button({
   return (
     <Component
       variant={type}
-      sx={{ userSelect: "none", ...renderStyles(color) }}
+      sx={{ userSelect: "none", cursor: "pointer", ...renderStyles(color) }}
       {...props}
     >
       {renderContent({ type, icon, color, children })}

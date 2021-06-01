@@ -30,7 +30,7 @@ function playSound(audio, times, sound, vibration) {
 const beep = new Audio("beep.wav");
 
 export default function useSound() {
-  const [sound, vibration] = useSettings();
+  const { sound, vibration } = useSettings();
 
   const alarm = () => {
     range(ALARM_PULSES).forEach((i) => {
@@ -38,10 +38,8 @@ export default function useSound() {
         playSound(beep, BEEP_PER_PULSE, sound, vibration);
       } else {
         setTimeout(
-          () => playSound(beep, BEEP_PER_PULSE),
-          i * PULSE_INTERVAL,
-          sound,
-          vibration
+          () => playSound(beep, BEEP_PER_PULSE, sound, vibration),
+          i * PULSE_INTERVAL
         );
       }
     });

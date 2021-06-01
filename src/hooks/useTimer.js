@@ -49,9 +49,14 @@ export function TimerProvider({ id, children }) {
   const [seconds, setSeconds] = useState(initialState.seconds);
   const [duration, setDuration] = useState(null);
 
+  const onEnd = useCallback(() => {
+    alarm();
+    setSeconds(null);
+  }, [alarm, setSeconds]);
+
   const [{ seconds: remaining, running }, { start, stop }] = useCountdown(
     seconds,
-    alarm
+    onEnd
   );
 
   const saveTimer = useCallback(() => {
