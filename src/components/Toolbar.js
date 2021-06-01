@@ -7,7 +7,7 @@ import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 import ColorPicker from "./ColorPicker";
 
-const Toolbar = ({ title, setTitle, color, setColor, timers, saveTimer }) => {
+const Toolbar = ({ title, setTitle, color, setColor, saveTimer }) => {
   const onTitleChange = (e) => setTitle(e.target.value);
   return (
     <span
