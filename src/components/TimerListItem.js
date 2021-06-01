@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-
+/** @jsxImportSource theme-ui */
 import { toTime } from "../core/utils";
 import Button from "./Button";
 

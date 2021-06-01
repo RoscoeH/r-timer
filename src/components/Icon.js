@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { Icon as IconComponent, InlineIcon } from "@iconify/react";
 import menu from "@iconify/icons-mdi-light/menu";
 import clock from "@iconify/icons-mdi-light/clock";

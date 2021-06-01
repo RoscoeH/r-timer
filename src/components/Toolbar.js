@@ -1,7 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, Input } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import composeHooks from "react-hooks-compose";
+import { Input } from "theme-ui";
 
 import useTimer from "../hooks/useTimer";
 import Button from "./Button";

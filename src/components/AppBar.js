@@ -1,7 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+/** @jsxImportSource theme-ui */
 import { useState } from "react";
-import { jsx, Styled } from "theme-ui";
+import { Styled } from "theme-ui";
 
 import SettingsMenu from "./SettingsMenu";
 import Button from "./Button";

@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, Button as ThemeUiButton, IconButton } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import { Button as ThemeUiButton, IconButton } from "theme-ui";
 import Icon from "./Icon";
 
 const TYPES = {

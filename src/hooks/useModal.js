@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState, useCallback } from "react";
 
 export default function useModal(Component, options = { backdrop: true }) {

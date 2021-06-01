@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-
+/** @jsxImportSource theme-ui */
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import { range, snapValue, toRadians } from "../core/utils";
 

@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-
+/** @jsxImportSource theme-ui */
 import useTimer from "../hooks/useTimer";
 import Button from "./Button";
 

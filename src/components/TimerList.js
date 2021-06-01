@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import composeHooks from "react-hooks-compose";

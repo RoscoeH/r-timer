@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useThemeUI } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import { useThemeUI } from "theme-ui";
 import useDimensions from "react-use-dimensions";
 
 import useModal from "../hooks/useModal";

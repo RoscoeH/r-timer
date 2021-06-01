@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useThemeUI } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import { useThemeUI } from "theme-ui";
 import Sheet from "react-modal-sheet";
 
 export default function BottomSheet({ header, children, isOpen, onClose }) {

@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useEffect, useMemo, useCallback } from "react";
 import useDimensions from "react-use-dimensions";
 import composeHooks from "react-hooks-compose";
