@@ -9,7 +9,7 @@ export default function Toggle({ value, onToggle }) {
 
   const variants = {
     on: { backgroundColor: colors.primary },
-    off: { backgroundColor: colors.dark },
+    off: { backgroundColor: colors.text },
   };
   const knobVariants = {
     on: { x: space[2] * 3 },

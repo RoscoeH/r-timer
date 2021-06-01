@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
-import { useColorMode } from "theme-ui";
 import composeHooks from "react-hooks-compose";
 
+import useSettings from "../hooks/useSettings";
 import Toggle from "./Toggle";
 
 function SettingsRow({ children, onClick }) {
@@ -11,8 +11,9 @@ function SettingsRow({ children, onClick }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        px: 3,
         py: 2,
+        pl: 3,
+        pr: 2,
         userSelect: "none",
         cursor: "pointer",
       }}
@@ -27,10 +28,17 @@ function Label({ children }) {
   return <label sx={{ mr: 4 }}>{children}</label>;
 }
 
-export function SettingsMenu({ useColorMode: [colorMode, setColorMode] }) {
-  const toggleColorMode = () =>
-    setColorMode(colorMode === "default" ? "dark" : "default");
-
+export function SettingsMenu({
+  darkMode,
+  setDarkMode,
+  sound,
+  setSound,
+  vibration,
+  setVibration,
+}) {
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+  const toggleSound = () => setSound(!sound);
+  const toggleVibration = () => setVibration(!vibration);
   return (
     <div
       sx={{
@@ -41,20 +49,20 @@ export function SettingsMenu({ useColorMode: [colorMode, setColorMode] }) {
         borderRadius: 5,
       }}
     >
-      <SettingsRow onClick={toggleColorMode}>
+      <SettingsRow onClick={toggleDarkMode}>
         <Label>Dark mode</Label>
-        <Toggle value={colorMode === "dark"} />
+        <Toggle value={darkMode} />
       </SettingsRow>
-      <SettingsRow onClick={toggleColorMode}>
+      <SettingsRow onClick={toggleSound}>
         <Label>Sounds</Label>
-        <Toggle value={colorMode === "dark"} />
+        <Toggle value={sound} />
       </SettingsRow>
-      <SettingsRow onClick={toggleColorMode}>
+      <SettingsRow onClick={toggleVibration}>
         <Label>Vibration</Label>
-        <Toggle value={colorMode === "dark"} />
+        <Toggle value={vibration} />
       </SettingsRow>
     </div>
   );
 }
 
-export default composeHooks({ useColorMode })(SettingsMenu);
+export default composeHooks({ useSettings })(SettingsMenu);
