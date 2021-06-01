@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import usePrevious from "./usePrevious";
 import useDragAngle from "./useDragAngle";
@@ -7,10 +7,15 @@ const angleToQuadrant = (angle) =>
   angle !== null ? Math.floor(angle / 90) : null;
 
 export default function useDragAngleWithLaps(steps, maxLaps, onEnd, onLap) {
-  const [angle, positionRef] = useDragAngle(steps, onEnd);
-  const previousAngle = usePrevious(angle);
   const [laps, setLaps] = useState(null);
-  const [totalAngle, setTotalAngle] = useState(laps * angle);
+  const [totalAngle, setTotalAngle] = useState();
+
+  const handleEnd = useCallback(() => {
+    onEnd && onEnd(totalAngle);
+  }, [totalAngle, onEnd]);
+
+  const [angle, positionRef] = useDragAngle(steps, handleEnd);
+  const previousAngle = usePrevious(angle);
 
   // Init laps
   useEffect(() => {

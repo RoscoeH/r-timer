@@ -26,6 +26,7 @@ const DragTimer = ({
   const updateSeconds = useCallback(
     (a) => {
       const newDuration = angleToSeconds(a);
+      console.log("new duration", newDuration);
       setSeconds(newDuration);
     },
     [setSeconds]
