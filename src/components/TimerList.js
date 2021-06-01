@@ -46,6 +46,7 @@ function TimerList({ color, timers, deleteTimer }) {
         order: aspectRatio < 1 ? 0 : -1,
         flex: aspectRatio < 1 ? 0 : 1,
         width: "100%",
+        minWidth: 8,
       }}
     >
       {aspectRatio < 1 && (
