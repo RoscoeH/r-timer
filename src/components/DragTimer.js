@@ -9,7 +9,7 @@ import { throttle } from "lodash";
 import { DEFAULT_TIMER_SIZE } from "../core/constants";
 import { angleToSeconds, secondsToAngle } from "../core/utils";
 import useTimer from "../hooks/useTimer";
-// import useSound from "../hooks/useSound";
+import useSound from "../hooks/useSound";
 import useDragAngleWithLaps from "../hooks/useDragAngleWithLaps";
 import Timer from "./Timer";
 
@@ -23,7 +23,7 @@ const DragTimer = ({
   debug = false,
 }) => {
   const [dimensionsRef, { width }] = useDimensions();
-  // const { clack } = useSound();
+  const { clack } = useSound();
 
   const updateSeconds = useCallback(
     (a) => {
@@ -36,7 +36,8 @@ const DragTimer = ({
   const [{ angle, laps }, dragRef] = useDragAngleWithLaps(
     120,
     3,
-    updateSeconds
+    updateSeconds,
+    clack
   );
 
   const throttledUpdate = useMemo(
