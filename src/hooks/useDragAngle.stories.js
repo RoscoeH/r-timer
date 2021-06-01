@@ -1,18 +1,8 @@
 /** @jsxImportSource theme-ui */
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
-
 import useDragAngle from "./useDragAngle";
 
 export default {
   title: "Hooks/useDragAngle",
-  decorators: [
-    (Story) => (
-      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
-        {Story()}
-      </DndProvider>
-    ),
-  ],
 };
 
 const SIZE = 300;

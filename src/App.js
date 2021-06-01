@@ -5,8 +5,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { ThemeProvider } from "theme-ui";
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
 
 import theme from "../src/core/theme";
 import Timer from "./pages/Timer";
@@ -16,24 +14,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <SettingsProvider>
-        <DndProvider
-          backend={TouchBackend}
-          options={{ enableMouseEvents: true }}
-        >
-          <Router>
-            <Switch>
-              <Route exact path="/timer/:id">
-                <Timer />
-              </Route>
-              <Route exact path="/timer">
-                <Timer />
-              </Route>
-              <Route exact path="/">
-                <Redirect to="/timer" />
-              </Route>
-            </Switch>
-          </Router>
-        </DndProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/timer/:id">
+              <Timer />
+            </Route>
+            <Route exact path="/timer">
+              <Timer />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/timer" />
+            </Route>
+          </Switch>
+        </Router>
       </SettingsProvider>
     </ThemeProvider>
   );

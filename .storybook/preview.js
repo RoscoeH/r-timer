@@ -1,5 +1,4 @@
 import { ThemeProvider } from "theme-ui";
-import { Router, Switch } from "react-router-dom";
 
 import theme from "../src/core/theme";
 import { TimerProvider } from "../src/hooks/useTimer";

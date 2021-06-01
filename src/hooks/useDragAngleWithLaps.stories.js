@@ -1,18 +1,9 @@
 /** @jsxImportSource theme-ui */
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
 
 import useDragAngleWithLaps from "./useDragAngleWithLaps";
 
 export default {
   title: "Hooks/useDragAngleWithLaps",
-  decorators: [
-    (Story) => (
-      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
-        {Story()}
-      </DndProvider>
-    ),
-  ],
 };
 
 const SIZE = 300;
