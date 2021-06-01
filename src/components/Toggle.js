@@ -31,7 +31,8 @@ export default function Toggle({ value, onToggle }) {
       animate={value ? "on" : "off"}
     >
       <motion.div
-        sx={{ bg: "light", width: 3, height: 3, borderRadius: 3 }}
+        sx={{ bg: "background", width: 3, height: 3, borderRadius: 3 }}
+        initial={false}
         variants={knobVariants}
       />
     </motion.div>
