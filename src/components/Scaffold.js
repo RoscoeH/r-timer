@@ -27,7 +27,7 @@ export default function Scaffold({ children }) {
         }}
       >
         <AppBar
-          title="Timerly"
+          title="rTimer"
           onHelp={() =>
             setColorMode(colorMode === "default" ? "dark" : "default")
           }
