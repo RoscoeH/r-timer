@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "theme-ui";
+import { useParams } from "react-router-dom";
 
 import "./Timer.css";
 
@@ -13,7 +14,8 @@ import { TimerProvider } from "../hooks/useTimer";
 import { AspectRatioProvider } from "../hooks/useAspectRatio";
 import Scaffold from "../components/Scaffold";
 
-export default function TimerPage({ id }) {
+export default function TimerPage() {
+  const { id } = useParams();
   return (
     <TimerProvider id={id}>
       <AspectRatioProvider>
