@@ -1,7 +1,6 @@
 import React from "react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
-import { DndProvider } from "react-dnd";
-import { TouchBackend } from "react-dnd-touch-backend";
+import { MemoryRouter, Route } from "react-router-dom";
 
 import Timer from "./Timer";
 
@@ -17,9 +16,9 @@ export default {
   },
   decorators: [
     (Story) => (
-      <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
-        {Story()}
-      </DndProvider>
+      <MemoryRouter initialEntries={["/timer/work"]}>
+        <Route path="/timer/:id">{Story()}</Route>
+      </MemoryRouter>
     ),
   ],
 };
