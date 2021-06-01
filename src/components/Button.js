@@ -65,7 +65,11 @@ export default function Button({
   const Component = type === TYPES.icon ? IconButton : ThemeUiButton;
   const renderStyles = STYLES[type] || (() => ({}));
   return (
-    <Component variant={type} sx={{ ...renderStyles(color) }} {...props}>
+    <Component
+      variant={type}
+      sx={{ userSelect: "none", ...renderStyles(color) }}
+      {...props}
+    >
       {renderContent({ type, icon, color, children })}
     </Component>
   );
