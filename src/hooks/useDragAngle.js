@@ -34,14 +34,26 @@ export default function useDragAngle(steps, onEnd) {
         handleEnd();
       }
     };
+    const onTouchStart = (event) =>{
+      event.preventDefault()
+      onMouseDown()
+    }
+    const onTouchEnd = (event) => {
+      event.preventDefault()
+      onMouseUp()
+    }
     const node = positionRef.current;
 
     node.addEventListener("mousedown", onMouseDown);
+    node.addEventListener("touchstart", onTouchStart)
     window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchend", onTouchEnd)
 
     return () => {
       node.removeEventListener("mousedown", onMouseDown);
+      node.removeEventListener("touchstart", onTouchStart)
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchend", onTouchEnd);
     };
   }, [positionRef, isDragging, handleEnd]);
 
