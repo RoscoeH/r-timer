@@ -39,6 +39,7 @@ export default function TimerListItem({
         },
       }}
       onClick={handleClick}
+      onTouchEnd={handleClick}
     >
       <div
         sx={{ width: 3, height: 3, bg: `accent.${color}`, borderRadius: 7 }}

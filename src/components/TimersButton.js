@@ -15,6 +15,7 @@ export default function TimersButton({ color, isOpen, onClick }) {
         py: 2,
       }}
       onClick={onClick}
+      onTouchEnd={onClick}
     >
       <Icon icon="chevronUp" rotate={isOpen ? 2 : 0} />
       TIMERS
