@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://timer.roscoe.dev">
-    <img alt="Gatsby" src="./public/favicon.ICO" width="64" />
+    <img alt="rTimer" src="./public/favicon.ICO" width="64" />
   </a>
 </p>
 <h1 align="center">
